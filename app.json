@@ -1,5 +1,5 @@
 {
-  "name": "MD",
+  "name": "AMRU-MD",
   "description": "Amru Multi Device whatsappbot",
   "logo": "https://i.hizliresim.com/6Bbj7i.jpg",
   "keywords": ["whatsapp"],
@@ -27,7 +27,7 @@
     "HANDLERS": {
       "description": "prefix for commands, enter false for no prefix",
       "required": true,
-      "value": ","
+      "value": "."
     },
     "LOGS": {
       "description": "need to show message logs ?",
