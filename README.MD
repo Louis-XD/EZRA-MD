@@ -1,6 +1,6 @@
 # [SCAN QR](https://x-asena-qr.herokuapp.com)
 
-# [DEPLOY](https://heroku.com/deploy?template=https://github.com/V1P3R-X/X-AsenaDuplicated) 
+# [DEPLOY](https://heroku.com/deploy?template=https://github.com/AMRUSIR/AMRU_SER_MD) 
 
 # Using X-asena 
 ## Creating a plugin 
