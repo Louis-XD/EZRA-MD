@@ -1,11 +1,11 @@
 {
-  "name": "X-AsenaDuplicated",
-  "description": "X-asena Multi Device whatsappbot",
+  "name": "MD",
+  "description": "Amru Multi Device whatsappbot",
   "logo": "https://i.hizliresim.com/6Bbj7i.jpg",
   "keywords": ["whatsapp"],
-  "repository": "https://github.com/V1P3R-X/X-AsenaDuplicated",
-  "website": "https://github.com/V1P3R-X/X-AsenaDuplicated",
-  "success_url": "https://github.com/V1P3R-X/X-AsenaDuplicated",
+  "repository": "https://github.com/AMRUSIR/AMRU_SER_MD",
+  "website": "https://github.com/AMRUSIR/AMRU_SER_MD",
+  "success_url": "https://github.com/AMRUSIR/AMRU_SER_MD",
   "stack": "container",
   "env": {
     "ANTI_LINK": {
