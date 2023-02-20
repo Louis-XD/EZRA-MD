@@ -50,6 +50,11 @@
       "description": "sudo numbers with country code seperate with , for multiple numbers",
       "required": false
     },
+    "WORK_TYPE": {
+      "description": "work type",
+      "required": "true",
+      "value": "private"
+     },
     "HEROKU_APP_NAME": {
       "description": "Heroku app name, same as above entered",
       "required": true
