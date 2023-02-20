@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/V1P3R-X/X-AsenaDuplicated.git"
+    "url": "git+https://github.com/AMRUSIR/AMRU_SER_MD.git"
   },
   "keywords": [
     "whatsapp",
@@ -30,9 +30,9 @@
   "developer": "X-Electra / V1P3R-X",
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/V1P3R-X/X-AsenaDuplicated/issues"
+    "url": "https://github.com/AMRUSIR/AMRU_SER_MD/issues"
   },
-  "homepage": "https://github.com/V1P3R-X/X-AsenaDuplicated#readme",
+  "homepage": "https://github.com/AMRUSIR/AMRU_SER_MD#readme",
   "dependencies": {
     "@adiwajshing/baileys": "^5.0.0",
     "@adiwajshing/keyed-db": "^0.2.4",
