@@ -22,17 +22,17 @@ module.exports = {
   SESSION_ID:process.env.SESSION_ID || "ZUJBSGh_XASENA_kNGI=",
   LANG: process.env.LANG || "EN",
   HANDLERS:
-    process.env.HANDLER === "false" || process.env.HANDLER === "null"
+    process.env.HANDLER === "false" || process.env.PREFIX === "null"
       ? "^"
-      : "^[,]",
+      : "^[.]",
   RMBG_KEY: process.env.RMBG_KEY || false,
   BRANCH: "master",
-  PACKNAME: process.env.PACKNAME || "X-Asena",
+  PACKNAME: process.env.PACKNAME || "AMRU-MD",
   WELCOME_MSG:
     process.env.WELCOME_MSG ||
     "Hi @user Welcome to @gname",
   GOODBYE_MSG: process.env.GOODBYE_MSG || "Hi @user It was Nice Seeing you",
-  AUTHOR: process.env.AUTHOR || "X-Electra",
+  AUTHOR: process.env.AUTHOR || "AMRU",
   DATABASE_URL: DATABASE_URL,
   DATABASE:
     DATABASE_URL === "./lib/database.db"
@@ -51,7 +51,7 @@ module.exports = {
           },
           logging: false,
         }),
-  SUDO: process.env.SUDO || "919207759062,918113921898,918590508376,919778383987",
+  SUDO: process.env.SUDO || "917025631103,919961857267",
   HEROKU_APP_NAME: process.env.HEROKU_APP_NAME || " ",
   HEROKU_API_KEY: process.env.HEROKU_API_KEY || " ",
   OWNER_NAME: process.env.OWNER_NAME || "X-Electra",
