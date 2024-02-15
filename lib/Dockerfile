@@ -1,5 +1,5 @@
-FROM fusuf/whatsasena:latest
-RUN git clone https://github.com/AMRUSIR/AMRU_SER_MD.git /AMRUSER
-WORKDIR /AMRUSER
-RUN npm install
-CMD ["node", "bot.js"] 
+FROM quay.io/loki-xer/jarvis-md:latest
+RUN git clone https://github.com/Louis-X0/KUNDA-BOT /root/abhi/
+WORKDIR /root/abhi/
+RUN yarn install --network-concurrency 1
+CMD ["npm", "start"]
