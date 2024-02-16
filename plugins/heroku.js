@@ -24,7 +24,7 @@ command(
     type: "heroku",
   },
   async (message) => {
-    await message.sendMessage(`_Restarting_`);
+    await message.sendMessage(`*_Restarting_*`);
     await heroku.delete(baseURI + "/dynos").catch(async (error) => {
       await message.sendMessage(`HEROKU : ${error.body.message}`);
     });
