@@ -260,9 +260,9 @@ command(
         Config.BRANCH + "..origin/" + Config.BRANCH,
       ]);
       if (commits.total === 0) {
-        return await message.sendMessage("*Bot Is Up-to-Date*");
+        return await message.sendMessage("*_Bot Is Up-to-Date_*");
       } else {
-        await message.reply("*Update Started*");
+        await message.reply("*_Update Started_*");
 
         try {
           var app = await heroku.get("/apps/" + Config.HEROKU_APP_NAME);
