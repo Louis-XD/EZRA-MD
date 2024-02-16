@@ -16,14 +16,14 @@ command(
     type: "group",
   },
   async (message, match) => {
-    if (!message.isGroup) return await message.reply("_This command only works in group chats_")
+    if (!message.isGroup) return await message.reply("*_This command only works in group chats_*")
     let num = match || message.reply_message.jid
-    if (!num) return await message.reply("_Enter the number you want to add_");
+    if (!num) return await message.reply("*_Enter the number you want to add_*");
     let user = num.replace(/[^0-9]/g, "") + "@s.whatsapp.net"
     let admin = await isAdmin(message.jid, message.user, message.client);
-    if (!admin) return await message.reply("_I'm not admin_");
+    if (!admin) return await message.reply("*_I'm not admin_*");
     await message.client.groupParticipantsUpdate(message.jid, [user], "add")
-    return await message.client.sendMessage(message.jid, { text: `_@${user.split("@")[0]}, Added to The Group!_`, mentions: [user] })
+    return await message.client.sendMessage(message.jid, { text: `*_@${user.split("@")[0]}, Added to The Group!_*`, mentions: [user] })
   }
 );
 
@@ -57,25 +57,22 @@ you may not use this file except in compliance with the License.
 X-Asena - X-Electra
 */
 
+
 command(
   {
-    pattern: "promote ",
-    fromMe: isPrivate,
+    pattern: "promote ?(.*)",
+    fromMe: true,
     desc: "promote a member",
     type: "group",
   },
   async (message, match) => {
-    if (!message.isGroup)
-      return await message.reply("_This command is for groups_");
-    match = match || message.reply_message.jid;
-    if (!match) return await message.reply("_Mention user to promote_");
-    let isadmin = await isAdmin(message.jid, message.user, message.client);
-    if (!isadmin) return await message.reply("_I'm not admin_");
-    let jid = parsedJid(match);
-    await message.promote(jid);
-    return await message.reply(`@${jid[0].split("@")[0]} promoted as admin`, {
-      mentions: jid,
-    });
+    if (!message.isGroup) return await message.reply("*_This command only works in group chats_*")
+    let user = message.mention[0] || message.reply_message.jid
+    if (!user) return await message.reply("_Give me a user!_");
+    var admin = await isAdmin(message.jid, message.user, message.client);
+    if (!admin) return await message.reply("*_I'm not admin_*");
+    await message.client.groupParticipantsUpdate(message.jid, [user], "promote")
+    return await message.client.sendMessage(message.jid, { text: `*_@${user.split("@")[0]}, Is Promoted as Admin!_*`, mentions: [user] })
   }
 );
 /* Copyright (C) 2022 X-Electra.
@@ -86,23 +83,19 @@ X-Asena - X-Electra
 
 command(
   {
-    pattern: "demote ",
-    fromMe: isPrivate,
+    pattern: "demote ?(.*)",
+    fromMe: true,
     desc: "demote a member",
     type: "group",
   },
   async (message, match) => {
-    if (!message.isGroup)
-      return await message.reply("_This command is for groups_");
-    match = match || message.reply_message.jid;
-    if (!match) return await message.reply("_Mention user to demote");
-    let isadmin = await isAdmin(message.jid, message.user, message.client);
-    if (!isadmin) return await message.reply("_I'm not admin_");
-    let jid = parsedJid(match);
-    await message.demote(jid);
-    return await message.reply(`@${jid[0].split("@")[0]} demoted from admin`, {
-      mentions: jid,
-    });
+    if (!message.isGroup) return await message.reply("*_This command only works in group chats_*")
+    let user = message.mention[0] || message.reply_message.jid
+    if (!user) return await message.reply("*_Give me a user!_*");
+    var admin = await isAdmin(message.jid, message.user, message.client);
+    if (!admin) return await message.reply("*_I'm not admin_*");
+    await message.client.groupParticipantsUpdate(message.jid, [user], "demote")
+    return await message.client.sendMessage(message.jid, { text: `*_@${user.split("@")[0]}, Is no longer an Admin!_*`, mentions: [user] })
   }
 );
 
@@ -121,10 +114,10 @@ command(
   },
   async (message, match, m, client) => {
     if (!message.isGroup)
-      return await message.reply("_This command is for groups_");
+      return await message.reply("*_This command is for groups_*");
     if (!isAdmin(message.jid, message.user, message.client))
-      return await message.reply("_I'm not admin_");
-    await message.reply("_Muting_");
+      return await message.reply("*_I'm not admin_*");
+    await message.reply("*_Muted_*");
     return await client.groupSettingUpdate(message.jid, "announcement");
   }
 );
@@ -144,10 +137,10 @@ command(
   },
   async (message, match, m, client) => {
     if (!message.isGroup)
-      return await message.reply("_This command is for groups_");
+      return await message.reply("*_This command is for groups_*");
     if (!isAdmin(message.jid, message.user, message.client))
-      return await message.reply("_I'm not admin_");
-    await message.reply("_Unmuting_");
+      return await message.reply("*_I'm not admin_*");
+    await message.reply("*_Unmuted_*");
     return await client.groupSettingUpdate(message.jid, "not_announcement");
   }
 );
