@@ -52,7 +52,7 @@ command(
         type: "downloader",
     },
     async (message, match) => {
-        if (!match.includes("https://youtu")) return await message.sendMessage("*Need a YouTube url_*");
+        if (!match.includes("https://youtu")) return await message.sendMessage("*_Need a YouTube url_*");
 var ytmp4 = await
                     fetch(`https://vihangayt.me/download/ytmp4?url=${match}`)
         var yt = await ytmp4.json()
