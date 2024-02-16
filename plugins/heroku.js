@@ -260,9 +260,9 @@ command(
         Config.BRANCH + "..origin/" + Config.BRANCH,
       ]);
       if (commits.total === 0) {
-        return await message.sendMessage("_Already on latest version_");
+        return await message.sendMessage("*Bot Is Up-to-Date*");
       } else {
-        await message.reply("_Updating_");
+        await message.reply("*Update Started*");
 
         try {
           var app = await heroku.get("/apps/" + Config.HEROKU_APP_NAME);
@@ -286,44 +286,32 @@ command(
         }
         await git.push("heroku", Config.BRANCH);
 
-        await message.sendMessage("UPDATED");
+        await message.sendMessage("*Successfully Updated*");
       }
     }
     await git.fetch();
     var commits = await git.log([Config.BRANCH + "..origin/" + Config.BRANCH]);
     if (commits.total === 0) {
-      await message.sendMessage("_Already on latest version_");
+      await message.sendMessage("*No Updates Available*");
     } else {
-      var availupdate = "*ᴜᴘᴅᴀᴛᴇs ᴀᴠᴀɪʟᴀʙʟᴇ* \n\n";
+      var availupdate = "*ᴜᴘᴅᴀᴛᴇs ᴀʀᴇ ᴀᴠᴀɪʟᴀʙʟᴇ* \n\n";
       commits["all"].map((commit, num) => {
-        availupdate += num + 1 + " ●  " + tiny(commit.message) + "\n";
+        availupdate += num + 1 + " ⋆ " + (commit.message) + "\n";
       });
       return await message.client.sendMessage(message.jid, {
         text: availupdate,
-        footer: tiny("click here to update"),
-        buttons: [
-          {
-            buttonId: `${prefix}update now`,
-            buttonText: { displayText: tiny("update now") },
-          },
-        ],
+        footer: ("click here to update"),
       });
     }
   }
 );
-
-/* Copyright (C) 2022 X-Electra.
-Licensed under the  GPL-3.0 License;
-you may not use this file except in compliance with the License.
-X-Asena - X-Electra
-*/
 
 command(
   {
     pattern: "update now",
     fromMe: true,
     type: "heroku",
-    desc: "Updates the Bot",
+    desc: "Updates the bot",
   },
   async (message) => {}
 );
