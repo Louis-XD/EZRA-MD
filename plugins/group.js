@@ -363,3 +363,123 @@ command(
       }
   }
 );
+
+
+command(
+  {
+    pattern: "invite ?(.*)",
+    fromMe: true,
+    desc: "Provides the group's invitation link.",
+    type: "group",
+  },
+  async (message, match) => {
+    if (!message.isGroup) return await message.reply("*_This command only works in group chats_*")
+    var admin = await isAdmin(message.jid, message.user, message.client);
+    if (!admin) return await message.reply("*_I'm not admin_*");
+    const response = await message.client.groupInviteCode(message.jid)
+    await message.reply(`https://chat.whatsapp.com/${response}`)
+  }
+);
+
+
+command(
+  {
+    pattern: "revoke ?(.*)",
+    fromMe: true,
+    desc: "Revoke Group invite link.",
+    type: "group",
+  },
+  async (message, match) => {
+    if (!message.isGroup) return await message.reply("*_This command only works in group chats_*")
+    var admin = await isAdmin(message.jid, message.user, message.client);
+    if (!admin) return await message.reply("*_I'm not admin_*");
+    await message.client.groupRevokeInvite(message.jid)
+    await message.reply("*_Revoked_*")
+  }
+);
+
+
+command(
+  {
+    pattern: "join ?(.*)",
+    fromMe: true,
+    desc: "Join in the group",
+    type: "group",
+  },
+  async (message, match) => {
+    var rgx = /^(https?:\/\/)?chat\.whatsapp\.com\/(?:invite\/)?([a-zA-Z0-9_-]{22})$/
+    if (!match || !rgx.test(match)) return await message.reply("*_Need group link_*")
+    var res = await message.client.groupAcceptInvite(match.split("/")[3])
+    if (!res) return await message.reply("*_Invalid Group Link!_*")
+    if (res) return await message.reply("*_Joined!_*")
+  }
+);
+
+
+  command(
+  {
+    pattern: "lock ?(.*)",
+    fromMe: true,
+    desc: "only allow admins to modify the group's settings.",
+    type: "group",
+  },
+  async (message, match) => {
+    if (!message.isGroup) return await message.reply("*_This command only works in group chats_*")
+    var admin = await isAdmin(message.jid, message.user, message.client);
+    if (!admin) return await message.reply("*_I'm not admin_*");
+    return await message.client.groupSettingUpdate(message.jid, "locked")
+  }
+);
+
+command(
+  {
+    pattern: "unlock ?(.*)",
+    fromMe: true,
+    desc: "allow everyone to modify the group's settings.",
+    type: "group",
+  },
+  async (message, match) => {
+    if (!message.isGroup) return await message.reply("*_This command only works in group chats_*")
+    var admin = await isAdmin(message.jid, message.user, message.client);
+    if (!admin) return await message.reply("*_I'm not admin_*");
+    return await message.client.groupSettingUpdate(message.jid, "unlocked")
+  }
+);
+
+
+command(
+  {
+    pattern: "gname ?(.*)",
+    fromMe: true,
+    desc: "Change group subject",
+    type: "group",
+  },
+  async (message, match) => {
+    if (!message.isGroup) return await message.reply("*_This command only works in group chats_*")
+    match = match || message.reply_message.text
+    if (!match) return await message.reply("*_Need Subject!_\n_Example: gname Ezra-MD Support!_.*")
+    var { restrict } = message.client.groupMetadata(message.jid);;
+    if (restrict && !(await isAdmin(message))) return await message.reply("*_I'm not admin_*");
+    await message.client.groupUpdateSubject(message.jid, match)
+    return await message.reply("_Subject updated_")
+  }
+);
+
+
+command(
+  {
+    pattern: "gdesc ?(.*)",
+    fromMe: true,
+    desc: "Change group description",
+    type: "group",
+  },
+  async (message, match) => {
+    if (!message.isGroup) return await message.reply("*_This command only works in group chats_*")
+    match = match || message.reply_message.text
+    if (!match) return await message.reply("*_Need Description!\nExample: gdesc Ezra-XD Wa BOT!_*")
+    const participants =  await message.client.groupMetadata(message.jid)
+    if (participants && !(await isAdmin(message.jid, message.user, message.client))) return await message.reply("_I'm not admin_");
+    await message.client.groupUpdateDescription(message.jid, match)
+    return await message.reply("_Description updated_")
+  }
+);
