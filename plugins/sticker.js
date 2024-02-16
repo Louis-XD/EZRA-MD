@@ -17,7 +17,7 @@ command(
   },
   async (message, match, m) => {
     if (!(message.reply_message.video || message.reply_message.image))
-      return await message.reply("*Reply to photo or video!*");
+      return await message.reply("*_Reply to photo or video!_*");
     let buff = await m.quoted.download();
     message.sendMessage(
       buff,
@@ -43,7 +43,7 @@ command(
   async (message, match) => {
     if (!match)
       return message.reply(
-        "*Enter a tg sticker url*\nEg: https://t.me/addstickers/Oldboyfinal\nKeep in mind that there is a chance of ban if used frequently"
+        "*_Enter a tg sticker url_*\n*_Eg: https://t.me/addstickers/Oldboyfinal\nKeep in mind that there is a chance of ban if used frequently_*"
       );
     let packid = match.split("/addstickers/")[1];
     let { result } = await getJson(
@@ -52,7 +52,7 @@ command(
       )}`
     );
     if (result.is_animated)
-      return message.reply("*Animated stickers are not supported*");
+      return message.reply("*_Animated stickers are not supported_*");
     message.reply(
       `*Total stickers :* ${result.stickers.length}\n*Estimated complete in:* ${
         result.stickers.length * 1.5
@@ -87,7 +87,7 @@ command(
   },
   async (message, match, m) => {
     if (!message.reply_message && !message.reply_message.sticker)
-      return await message.reply("*Reply to sticker*");
+      return await message.reply("*_Reply to sticker_*");
     let buff = await m.quoted.download();
     let [packname, author] = match.split(",");
     await message.sendMessage(
@@ -116,7 +116,7 @@ command(
   },
   async (message, match, m) => {
     if (!message.reply_message || !message.reply_message.sticker)
-      return await message.reply("_Reply to sticker_");
+      return await message.reply("*_Reply to sticker_*");
     let img = new Image();
     await img.load(await m.quoted.download());
     const exif = JSON.parse(img.exif.slice(22).toString());
