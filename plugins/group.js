@@ -35,36 +35,22 @@ X-Asena - X-Electra
 
 command(
   {
-    pattern: "kick",
+    pattern: "kick ?(.*)",
     fromMe: true,
-    desc: "kicking a person to group",
+    desc: "kick a person from the group",
     type: "group",
   },
   async (message, match) => {
-    if (!match.includes("@"))return message.reply(`*_mention a person_*`)
-    if (!match && match !== "all") return await message.reply("_Removing All Group Members_")
-    if (match == "all") {
-    let { participants } = await message.client.groupMetadata(message.jid);
-    let isadmin = await isAdmin(message.jid, message.user, message.client);
-    if (!isadmin) return await message.reply("_I'm not admin_");
-
-    for (let key of participants) {
-      let jid = parsedJid(key.id);
-      await message.kick(jid);
-      await message.reply(`_@${user.split("@")[0]}, Kicked From The Group!_`, {
-        mentions: jid,
-      });
-    }
-  }
-    if (!message.isGroup) return await message.reply("_This command only works in group chats_")
-    let user = message.mention[0] || message.reply_message.jid
-   var admin = await isAdmin(message.jid, message.user, message.client);
-    if (!admin) return await message.reply("_I'm not admin_");
+    if (!message.isGroup) return await message.reply("*_This command only works in group chats_*")
+    let num = match || message.reply_message.jid
+    if (!num) return await message.reply("*_Need a number/reply/mention_*");
+    let user = num.replace(/[^0-9]/g, "") + "@s.whatsapp.net"
+    let admin = await isAdmin(message.jid, message.user, message.client);
+    if (!admin) return await message.reply("*_I'm not admin_*");
     await message.client.groupParticipantsUpdate(message.jid, [user], "remove")
-    return await message.client.sendMessage(message.jid, { text: `_@${user.split("@")[0]}, Kicked From The Group!_`, mentions: [user] })
+    return await message.client.sendMessage(message.jid, { text: `*_@${user.split("@")[0]}, Kicked from The Group!_*`, mentions: [user] })
   }
 );
-
 /* Copyright (C) 2022 X-Electra.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
