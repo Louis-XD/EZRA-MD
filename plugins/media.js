@@ -41,11 +41,11 @@ Function(
     type: "downloader",
   },
   async (message, match) => {
-    if (!match) return await message.sendMessage("Enter Search Term,number");
+    if (!match) return await message.sendMessage("*_Enter Search Term,number_*");
     let [query, amount] = match.split(",");
     let result = await gimage(query, amount);
     await message.sendMessage(
-      `_Downloading ${amount || 5} images for ${query}_`
+      `*_Downloading ${amount || 5} images for ${query}_*`
     );
     for (let i of result) {
       await message.sendFromUrl(i);
@@ -88,9 +88,9 @@ command(
     type: "converter",
   },
   async (message, match, m) => {
-if (!match) return await message.reply(`_Need Text!_
-_Example: tts Hello_
-_tts Hello :en_`);
+if (!match) return await message.reply(`*_Need Text!_*
+*_Example: tts Hello_*
+*_tts Hello :en_*`);
             let [txt,lang] = match.split`:`
             const audio = googleTTS.getAudioUrl(`${txt}`, {
                 lang: lang || "en-US",
@@ -117,7 +117,7 @@ command(
     type: "converter",
   },
   async (message, match, m) => {
-if (!message.reply_message || (!message.reply_message.video && !message.reply_message.image)) return await message.reply('*Reply at image/video!*')
+if (!message.reply_message || (!message.reply_message.video && !message.reply_message.image)) return await message.reply('*_Reply at image/video!_*')
 let res = await m.quoted.download();
       if(message.reply_message.video){
        await message.client.sendMessage(message.jid, { video :res ,  mimetype:"video/mp4", caption: (match)}, {quoted: message })
@@ -144,9 +144,9 @@ command(
   },
   async (message, match, m) => {
     if (!message.reply_message)
-      return await message.reply("_Reply to a sticker_");
+      return await message.reply("*_Reply to a sticker_*");
     if (message.reply_message.mtype !== "stickerMessage")
-      return await message.reply("_Not a sticker_");
+      return await message.reply("*_Not a sticker_*");
     let buff = await m.quoted.download();
     return await message.sendMessage(buff, {}, "image");
   }
@@ -167,9 +167,9 @@ command(
   },
   async (message, match, m) => {
     if (!message.reply_message)
-      return await message.reply("_Reply to a sticker_");
+      return await message.reply("*_Reply to a sticker_*");
     if (message.reply_message.mtype !== "stickerMessage")
-      return await message.reply("_Not a sticker_");
+      return await message.reply("*_Not a sticker_*");
     let buff = await m.quoted.download();
     let buffer = await webp2mp4(buff);
     return await message.sendMessage(buffer, {}, "video");
@@ -275,7 +275,7 @@ command(
     type: "converter",
   },
   async (message, match, m) => {
-    if (!message.reply_message || (!message.reply_message.video && !message.reply_message.audio)) return await message.reply('*Reply at audio/voice/video!*')  
+    if (!message.reply_message || (!message.reply_message.video && !message.reply_message.audio)) return await message.reply('*_Reply at audio/voice/video!_*')  
     let buff = await m.quoted.download();
     buff = await toAudio(buff, "mp3");
      await message.sendMessage(buff, { mimetype: "audio/mpeg", quoted: message }, "audio");
@@ -402,10 +402,10 @@ command(
   },
   async (message, match) => {
     match = match || message.reply_message.text;
-    if (!match) return await message.reply("_Enter a URL_");
-    if (!ytIdRegex.test(match)) return await message.reply("_Invalid Url_");
+    if (!match) return await message.reply("*_Enter a URL_*");
+    if (!ytIdRegex.test(match)) return await message.reply("*_Invalid Url_*");
     yta(match).then(async ({ dl_link, title, thumb }) => {
-      await message.reply(`_Downloading ${title}_`);
+      await message.reply(`*_Downloading ${title}_*`);
       let buff = await AddMp3Meta(dl_link, thumb, {
         title,
       });
