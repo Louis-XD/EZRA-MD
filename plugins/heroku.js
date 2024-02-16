@@ -286,13 +286,13 @@ command(
         }
         await git.push("heroku", Config.BRANCH);
 
-        await message.sendMessage("*Successfully Updated*");
+        await message.sendMessage("*_Successfully Updated_*");
       }
     }
     await git.fetch();
     var commits = await git.log([Config.BRANCH + "..origin/" + Config.BRANCH]);
     if (commits.total === 0) {
-      await message.sendMessage("*No Updates Available*");
+      await message.sendMessage("*_No Updates Available_*");
     } else {
       var availupdate = "*ᴜᴘᴅᴀᴛᴇs ᴀʀᴇ ᴀᴠᴀɪʟᴀʙʟᴇ* \n\n";
       commits["all"].map((commit, num) => {
@@ -318,6 +318,7 @@ command(
 
 //Credits Mask-ser
 //created by mask ser for HERMIT_MD
+
 const { SUDO } = require("../config");
 const { Function } = require("../lib/");
 Function(
