@@ -13,7 +13,7 @@ command(
       return await message.reply("*_Reply to a photo_*");
     let media = await m.quoted.download();
     await updateProfilePicture(message.user, media, message);
-    return await message.reply("*Profile Picture Updated*");
+    return await message.reply("*_Profile Picture Updated_*");
   }
 );
 
