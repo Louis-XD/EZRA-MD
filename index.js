@@ -75,7 +75,7 @@ async function Abhiy() {
 
     if (connection === "open") {
     
-      console.log("✅ Login Successful!!");
+      console.log("Reading Session Id🔮");
       console.log("Installing External Plugins...");
 
       let plugins = await PluginDB.findAll();
@@ -92,15 +92,15 @@ async function Abhiy() {
           }
         }
       });
-      console.log(" Installing Plugins...");
+      console.log(" Session Id Conncted💎");
 
       fs.readdirSync("./plugins").forEach((plugin) => {
         if (path.extname(plugin).toLowerCase() == ".js") {
           require("./plugins/" + plugin);
         }
       });
-      console.log(" Plugin Installed..!!✅");
-      let str = `EZRA MD STARTED \nVERSION   : ${require("./package.json").version } \nPLUGINS   : ${events.commands.length}`;
+      console.log(" Ezra-MD Working 🗿🩵");
+      let str = `𝑬𝒁𝑹𝑨 𝑴𝑫 𝑺𝑻𝑨𝑹𝑻𝑬𝑫 \n\n\n\n\n\nVERSION   : ${require("./package.json").version } \nPLUGINS   : ${events.commands.length}`;
       conn.sendMessage(conn.user.id, { text: str });
      try {
         conn.ev.on("creds.update", saveCreds);
