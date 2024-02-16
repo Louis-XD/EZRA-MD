@@ -46,7 +46,7 @@ command(
 
 command(
     {
-        pattern: "ytv",
+        pattern: "video",
         fromMe: isPrivate,
         desc: "Video Downloader",
         type: "downloader",
