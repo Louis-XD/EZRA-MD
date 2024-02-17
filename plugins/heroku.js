@@ -24,7 +24,7 @@ command(
     type: "heroku",
   },
   async (message) => {
-    await message.sendMessage(`*_Restarting_*`);
+    await message.sendMessage(`*_Restarting!_*`);
     await heroku.delete(baseURI + "/dynos").catch(async (error) => {
       await message.sendMessage(`HEROKU : ${error.body.message}`);
     });
@@ -49,7 +49,7 @@ command(
     await heroku
       .get(baseURI + "/formation")
       .then(async (formation) => {
-        await message.sendMessage(`_Shutting down._`);
+        await message.sendMessage(`*_Shutting down._*`);
         await heroku.patch(baseURI + "/formation/" + formation[0].id, {
           body: {
             quantity: 0,
@@ -111,34 +111,7 @@ you may not use this file except in compliance with the License.
 X-Asena - X-Electra
 */
 
-command(
-  {
-    pattern: "setvar ",
-    fromMe: true,
-    type: "heroku",
-    desc: "Set heroku env",
-    type: "heroku",
-  },
-  async (message, match) => {
-    if (!match)
-      return await message.sendMessage(`_Example: .setvar SUDO:918113921898_`);
-    const [key, value] = match.split(":");
-    if (!key || !value)
-      return await message.sendMessage(`_Example: .setvar SUDO:918113921898_`);
-    heroku
-      .patch(baseURI + "/config-vars", {
-        body: {
-          [key.toUpperCase()]: value,
-        },
-      })
-      .then(async () => {
-        await message.sendMessage(`_${key.toUpperCase()}: ${value}_`);
-      })
-      .catch(async (error) => {
-        await message.sendMessage(`HEROKU : ${error.body.message}`);
-      });
-  }
-);
+
 
 /* Copyright (C) 2022 X-Electra.
 Licensed under the  GPL-3.0 License;
@@ -146,35 +119,7 @@ you may not use this file except in compliance with the License.
 X-Asena - X-Electra
 */
 
-command(
-  {
-    pattern: "delvar ",
-    fromMe: true,
-    type: "heroku",
-    desc: "Delete Heroku env",
-    type: "heroku",
-  },
-  async (message, match) => {
-    if (!match) return await message.sendMessage(`_Example: delvar sudo_`);
-    heroku
-      .get(baseURI + "/config-vars")
-      .then(async (vars) => {
-        const key = match.trim().toUpperCase();
-        if (vars[key]) {
-          await heroku.patch(baseURI + "/config-vars", {
-            body: {
-              [key]: null,
-            },
-          });
-          return await message.sendMessage(`_Deleted ${key}_`);
-        }
-        await message.sendMessage(`_${key} not found_`);
-      })
-      .catch(async (error) => {
-        await message.sendMessage(`HEROKU : ${error.body.message}`);
-      });
-  }
-);
+
 
 /* Copyright (C) 2022 X-Electra.
 Licensed under the  GPL-3.0 License;
@@ -182,32 +127,7 @@ you may not use this file except in compliance with the License.
 X-Asena - X-Electra
 */
 
-command(
-  {
-    pattern: "getvar ",
-    fromMe: true,
-    type: "heroku",
-    desc: "Show heroku env",
-    type: "heroku",
-  },
-  async (message, match) => {
-    if (!match) return await message.sendMessage(`_Example: getvar sudo_`);
-    const key = match.trim().toUpperCase();
-    heroku
-      .get(baseURI + "/config-vars")
-      .then(async (vars) => {
-        if (vars[key]) {
-          return await message.sendMessage(
-            "_{} : {}_".replace("{}", key).replace("{}", vars[key])
-          );
-        }
-        await message.sendMessage(`${key} not found`);
-      })
-      .catch(async (error) => {
-        await message.sendMessage(`HEROKU : ${error.body.message}`);
-      });
-  }
-);
+
 
 /* Copyright (C) 2022 X-Electra.
 Licensed under the  GPL-3.0 License;
@@ -242,7 +162,7 @@ command(
 /* Copyright (C) 2022 X-Electra.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
-X-Asena - X-Electra
+Louis-X0 - Zeta-X0
 */
 
 command(
