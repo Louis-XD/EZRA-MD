@@ -6,21 +6,7 @@ you may not use this file except in compliance with the License.
 X-Asena - X-Electra
 */
 
-command(
-  {
-    pattern: "setpp ",
-    fromMe: true,
-    desc: "Set profile picture",
-    type: "user",
-  },
-  async (message, match, m) => {
-    if (!message.reply_message.image)
-      return await message.reply("_Reply to a photo_");
-    let buff = await m.quoted.download();
-    await message.setPP(message.user, buff);
-    return await message.reply("_Profile Picture Updated_");
-  }
-);
+
 
 /* Copyright (C) 2022 X-Electra.
 Licensed under the  GPL-3.0 License;
@@ -28,19 +14,7 @@ you may not use this file except in compliance with the License.
 X-Asena - X-Electra
 */
 
-command(
-  {
-    pattern: "setname",
-    fromMe: true,
-    desc: "Set User name",
-    type: "user",
-  },
-  async (message, match) => {
-    if (!match) return await message.reply("_Enter name_");
-    await message.updateName(match);
-    return await message.reply(`_Username Updated : ${match}_`);
-  }
-);
+
 
 /* Copyright (C) 2022 X-Electra.
 Licensed under the  GPL-3.0 License;
