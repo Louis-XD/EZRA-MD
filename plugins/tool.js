@@ -14,7 +14,7 @@ command(
     pattern: "qr",
     fromMe: isPrivate,
     desc: "Read/Write Qr.",
-    type: "Tool",
+    type: "converter",
   },
   async (message, match) => {
     match = match || message.reply_message.text;
@@ -41,7 +41,7 @@ command(
     pattern: "find ?(.*)",
     fromMe: true,
     desc: "find the replied music",
-    type: "tools",
+    type: "downloader",
   },
   async (message, match, msg) => {
     if (!message.reply_message)
@@ -88,7 +88,7 @@ command(
     pattern: "vv",
     fromMe: isPrivate,
     desc: "Forwards The View once messsage",
-    type: "tool",
+    type: "converter",
   },
   async (message, match, m) => {
     if (message.reply_message.type !== "view_once")
@@ -103,7 +103,7 @@ command(
     pattern: "removebg",
     fromMe: isPrivate,
     desc: "removes background of an image",
-    type: "tool",
+    type: "converter",
   },
   async (message) => {
     if (!message.reply_message || !message.reply_message.image)
@@ -140,7 +140,7 @@ command(
     pattern: "bitly ?(.*)",
     fromMe: isPrivate,
     desc: "Converts Url to bitly",
-    type: "tool",
+    type: "converter",
   },
   async (message, match) => {
     match = match || message.reply_message.text;
@@ -156,7 +156,7 @@ command(
     pattern: "spdf",
     fromMe: isPrivate,
     desc: "Converts Site to PDF.",
-    type: "tool",
+    type: "converter",
   },
   async (message, match) => {
     match = match || message.reply_message.text;
