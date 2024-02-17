@@ -75,7 +75,7 @@ command(
 /* Copyright (C) 2022 X-Electra.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
-X-Asena - X-Electra
+Louis-X0 - Zeta-X0
 */
 
 command(
@@ -92,10 +92,10 @@ command(
   }
 );
 
-/* Copyright (C) 2022 X-Electra.
+/* Copyright (C) 2024 Louis-X0.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
-X-Asena - X-Electra
+Louis-X0 - Zeta-X0
 */
 
 command(
@@ -106,8 +106,8 @@ command(
     type: "user",
   },
   async (message, match,m,client) => {
-    if (message.isGroup) {
-      client.sendMessage(message.jid, { delete: message.reply_message.key })
+    if (!message.reply_message) return await message.reply("*_Reply to a message_*"); {
+      await client.sendMessage(message.jid, { delete: message.reply_message.key })
     }
   }
 );
