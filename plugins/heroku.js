@@ -165,18 +165,6 @@ you may not use this file except in compliance with the License.
 Louis-X0 - Zeta-X0
 */
 
->const got = require("got");
-const Heroku = require("heroku-client");
-const { command, isPrivate, tiny } = require("../lib/");
-const Config = require("../config");
-const heroku = new Heroku({ token: Config.HEROKU_API_KEY });
-const baseURI = "/apps/" + Config.HEROKU_APP_NAME;
-const simpleGit = require("simple-git");
-const { secondsToDHMS } = require("../lib");
-const git = simpleGit();
-const exec = require("child_process").exec;
-
-
 command(
   {
     pattern: "update",
@@ -228,7 +216,7 @@ command(
     } else {
       var availupdate = "*ᴜᴘᴅᴀᴛᴇs ᴀʀᴇ ᴀᴠᴀɪʟᴀʙʟᴇ* \n\n";
       commits["all"].map((commit, num) => {
-        availupdate += num + 1 + " ⋆ " + (commit.message) + `\n\n _ᴛʏᴘᴇ *${config.HANDLERS}Update now* ᴛᴏ ᴜᴘᴅᴀᴛᴇ ᴛʜᴇ ᴇᴢʀᴀ-xᴅ_\n\n\n*_©️ LOUIS-XO_*\n`;
+        availupdate += num + 1 + " ⋆ " + (commit.message) + "\n";
       });
       return await message.client.sendMessage(message.jid, {
         text: availupdate,
@@ -237,6 +225,9 @@ command(
     }
   }
 );
+
+
+        
 
 command(
   {
