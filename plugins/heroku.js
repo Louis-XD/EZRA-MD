@@ -8,6 +8,7 @@ const simpleGit = require("simple-git");
 const { secondsToDHMS } = require("../lib");
 const git = simpleGit();
 const exec = require("child_process").exec;
+const { SUDO } = require("../config");
 
 /* Copyright (C) 2022 X-Electra.
 Licensed under the  GPL-3.0 License;
@@ -239,61 +240,6 @@ command(
   async (message) => {}
 );
 
-//Credits Mask-ser
-//created by mask ser for HERMIT_MD
+//Credits Zeta-X0
+//created by Abhiy
 
-const { SUDO } = require("../config");
-const { Function } = require("../lib/");
-Function(
-  { pattern: "setsudo ?(.*)", fromMe: true, desc: "set sudo", type: "user" },
-  async (m, mm) => {
-    var newSudo = (m.reply_message ? m.reply_message.jid : "" || mm).split(
-      "@"
-    )[0];
-    if (!newSudo)
-      return await m.sendMessage("*reply to a number*", { quoted: m });
-    var setSudo = (SUDO + "," + newSudo).replace(/,,/g, ",");
-    setSudo = setSudo.startsWith(",") ? setSudo.replace(",", "") : setSudo;
-    await m.sendMessage("```new sudo numbers are: ```" + setSudo, {
-      quoted: m,
-    });
-    await m.sendMessage("_It takes 30 seconds to make effect_", { quoted: m });
-    await heroku
-      .patch(baseURI + "/config-vars", { body: { SUDO: setSudo } })
-      .then(async (app) => {});
-  }
-);
-Function(
-  {
-    pattern: "delsudo ?(.*)",
-    fromMe: true,
-    desc: "delete sudo sudo",
-    type: "user",
-  },
-  async (m, mm) => {
-    var newSudo = (m.reply_message ? m.reply_message.jid : "" || mm).split(
-      "@"
-    )[0];
-    if (!newSudo) return await m.sendMessage("*Need reply/mention/number*");
-    var setSudo = SUDO.replace(newSudo, "").replace(/,,/g, ",");
-    setSudo = setSudo.startsWith(",") ? setSudo.replace(",", "") : setSudo;
-    await m.sendMessage("```NEW SUDO NUMBERS ARE: ```" + setSudo, {
-      quoted: m,
-    });
-    await m.sendMessage("_IT TAKES 30 SECONDS TO MAKE EFFECT_", { quoted: m });
-    await heroku
-      .patch(baseURI + "/config-vars", { body: { SUDO: setSudo } })
-      .then(async (app) => {});
-  }
-);
-Function(
-  { pattern: "getsudo ?(.*)", fromMe: true, desc: "shows sudo", type: "user" },
-  async (m) => {
-    const vars = await heroku
-      .get(baseURI + "/config-vars")
-      .catch(async (error) => {
-        return await m.send("HEROKU : " + error.body.message);
-      });
-    await m.send("```" + `SUDO Numbers are : ${vars.SUDO}` + "```");
-  }
-);
