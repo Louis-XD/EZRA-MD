@@ -2,10 +2,10 @@ const config = require("../config");
 const { command, isPrivate } = require("../lib/");
 const { isAdmin, parsedJid, isUrl } = require("../lib");
 const { cron, saveSchedule } = require("../lib/scheduler");
-/* Copyright (C) 2022 X-Electra.
+/* Copyright (C) 2024 Louis-X0.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
-X-Asena - X-Electra
+Louis-X0 - Zeta-X0
 */
 
 command(
@@ -18,7 +18,7 @@ command(
   async (message, match) => {
     if (!message.isGroup) return await message.reply("*_This command only works in group chats_*")
     let num = match || message.reply_message.jid
-    if (!num) return await message.reply("*_Enter the number you want to add_*");
+    if (!num) return await message.reply("**_Need a number/reply/mention!_**");
     let user = num.replace(/[^0-9]/g, "") + "@s.whatsapp.net"
     let admin = await isAdmin(message.jid, message.user, message.client);
     if (!admin) return await message.reply("*_I'm not admin_*");
@@ -27,10 +27,10 @@ command(
   }
 );
 
-/* Copyright (C) 2022 X-Electra.
+/* Copyright (C) 2024 Louis-X0.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
-X-Asena - X-Electra
+Louis-X0 - Zeta-X0
 */
 
 command(
@@ -43,7 +43,7 @@ command(
   async (message, match) => {
     if (!message.isGroup) return await message.reply("*_This command only works in group chats_*")
     let num = match || message.reply_message.jid
-    if (!num) return await message.reply("*_Need a number/reply/mention_*");
+    if (!num) return await message.reply("*_Need a number/reply/mention!_*");
     let user = num.replace(/[^0-9]/g, "") + "@s.whatsapp.net"
     let admin = await isAdmin(message.jid, message.user, message.client);
     if (!admin) return await message.reply("*_I'm not admin_*");
@@ -51,12 +51,12 @@ command(
     return await message.client.sendMessage(message.jid, { text: `*_@${user.split("@")[0]}, Kicked from The Group!_*`, mentions: [user] })
   }
 );
-/* Copyright (C) 2022 X-Electra.
+
+/* Copyright (C) 2024 Louis-X0.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
-X-Asena - X-Electra
+Louis-X0 - Zeta-X0
 */
-
 
 command(
   {
@@ -68,17 +68,18 @@ command(
   async (message, match) => {
     if (!message.isGroup) return await message.reply("*_This command only works in group chats_*")
     let user = message.mention[0] || message.reply_message.jid
-    if (!user) return await message.reply("_Give me a user!_");
+    if (!user) return await message.reply("*_Need a number/reply/mention!_*");
     var admin = await isAdmin(message.jid, message.user, message.client);
     if (!admin) return await message.reply("*_I'm not admin_*");
     await message.client.groupParticipantsUpdate(message.jid, [user], "promote")
     return await message.client.sendMessage(message.jid, { text: `*_@${user.split("@")[0]}, Is Promoted as Admin!_*`, mentions: [user] })
   }
 );
-/* Copyright (C) 2022 X-Electra.
+
+/* Copyright (C) 2024 Louis-X0.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
-X-Asena - X-Electra
+Louis-X0 - Zeta-X0
 */
 
 command(
@@ -91,7 +92,7 @@ command(
   async (message, match) => {
     if (!message.isGroup) return await message.reply("*_This command only works in group chats_*")
     let user = message.mention[0] || message.reply_message.jid
-    if (!user) return await message.reply("*_Give me a user!_*");
+    if (!user) return await message.reply("**_Need a number/reply/mention!_**");
     var admin = await isAdmin(message.jid, message.user, message.client);
     if (!admin) return await message.reply("*_I'm not admin_*");
     await message.client.groupParticipantsUpdate(message.jid, [user], "demote")
@@ -99,10 +100,10 @@ command(
   }
 );
 
-/* Copyright (C) 2022 X-Electra.
+/* Copyright (C) 2024 Louis-X0.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
-X-Asena - X-Electra
+Louis-X0 - Zeta-X0
 */
 
 command(
@@ -114,7 +115,7 @@ command(
   },
   async (message, match, m, client) => {
     if (!message.isGroup)
-      return await message.reply("*_This command is for groups_*");
+      return await message.reply("*_This command work only in group chats_*");
     if (!isAdmin(message.jid, message.user, message.client))
       return await message.reply("*_I'm not admin_*");
     await message.reply("*_Muted_*");
@@ -122,10 +123,10 @@ command(
   }
 );
 
-/* Copyright (C) 2022 X-Electra.
+/* Copyright (C) 2024 Louis-X0.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
-X-Asena - X-Electra
+Louis-X0 - Zeta-X0
 */
 
 command(
@@ -137,17 +138,18 @@ command(
   },
   async (message, match, m, client) => {
     if (!message.isGroup)
-      return await message.reply("*_This command is for groups_*");
+      return await message.reply("*_This command work only in groups_*");
     if (!isAdmin(message.jid, message.user, message.client))
       return await message.reply("*_I'm not admin_*");
     await message.reply("*_Unmuted_*");
     return await client.groupSettingUpdate(message.jid, "not_announcement");
   }
 );
-/* Copyright (C) 2022 X-Electra.
+
+/* Copyright (C) 2024 Louis-X0.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
-X-Asena - X-Electra
+Louis-X0 - Zeta-X0
 */
 
 command(
@@ -159,7 +161,7 @@ command(
   },
   async (message, match, m, client) => {
     if (!message.isGroup)
-      return await message.reply("_This command is for groups_");
+      return await message.reply("_This command work only group chats_");
     if (!match) return message.reply("_Enter time to mute_\nEg : amute 20:10");
 
     if (!isAdmin(message.jid, message.user, message.client))
@@ -175,10 +177,11 @@ command(
     });
   }
 );
-/* Copyright (C) 2022 X-Electra.
+
+/* Copyright (C) 2024 Louis-X0.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
-X-Asena - X-Electra
+Louis-X0 - Zeta-X0
 */
 
 command(
@@ -190,7 +193,7 @@ command(
   },
   async (message, match, m, client) => {
     if (!message.isGroup)
-      return await message.reply("_This command is for groups_");
+      return await message.reply("_This command work only group chats_");
     if (!match)
       return message.reply("_Enter time to unmute_\nEg : aunmute 20:10");
 
@@ -207,10 +210,11 @@ command(
     });
   }
 );
-/* Copyright (C) 2022 X-Electra.
+
+/* Copyright (C) 2024 Louis-X0.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
-X-Asena - X-Electra
+Louis-X0 - Zeta-X0
 */
 
 command(
@@ -222,7 +226,7 @@ command(
   },
   async (message, match, m, client) => {
     if (!message.isGroup)
-      return await message.reply("_This command is for groups_");
+      return await message.reply("_This command work only in  group chats_");
     let { participants } = await client.groupMetadata(message.jid);
     let participant = participants.map((u) => u.id);
     let str = "╭──〔 *Group Jids* 〕\n";
@@ -234,10 +238,10 @@ command(
   }
 );
 
-/* Copyright (C) 2022 X-Electra.
+/* Copyright (C) 2024 Louis-X0.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
-X-Asena - X-Electra
+Louis-X0 - Zeta-X0
 */
 
 command(
@@ -259,10 +263,11 @@ command(
     });
   }
 );
-/* Copyright (C) 2022 X-Electra.
+
+/* Copyright (C) 2024 Louis-X0.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
-X-Asena - X-Electra
+Louis-X0 - Zeta-X0
 */
 
 command(
@@ -284,47 +289,11 @@ command(
     });
   }
 );
-command(
-  {
-    pattern: "poll ?(.*)",
-    fromMe: true,
-    desc: "create poll",
-    type: "group",
-  },
-  async (message, match) => {
-       let {prefix} = message
-    let [poll,opt] = match.split(";");
-    if (match.split(";") < 2)
-      return await message.reply(
-        `${prefix}poll question;option1,option2,option3.....`
-      );
-    
-    let options = [];
 
-    for (let i of opt.split(',')) {
-      options.push({ optionName: i });
-    }
-    return await message.client.relayMessage(
-      message.jid,
-      {
-        pollCreationMessage: {
-          name: poll,
-          options,
-          selectableOptionsCount: 0,
-        },
-      },
-      {}
-    );
-  }
-);
-
-/**
- * antilink
- */
-/* Copyright (C) 2022 X-Electra.
+/* Copyright (C) 2024 Louis-X0.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
-X-Asena - X-Electra
+Louis-X0 - Zeta-X0
 */
 
 command(
@@ -357,6 +326,11 @@ command(
   }
 );
 
+/* Copyright (C) 2024 Louis-X0.
+Licensed under the  GPL-3.0 License;
+you may not use this file except in compliance with the License.
+Louis-X0 - Zeta-X0
+*/
 
 command(
   {
@@ -374,6 +348,11 @@ command(
   }
 );
 
+/* Copyright (C) 2024 Louis-X0.
+Licensed under the  GPL-3.0 License;
+you may not use this file except in compliance with the License.
+Louis-X0 - Zeta-X0
+*/
 
 command(
   {
@@ -387,10 +366,15 @@ command(
     var admin = await isAdmin(message.jid, message.user, message.client);
     if (!admin) return await message.reply("*_I'm not admin_*");
     await message.client.groupRevokeInvite(message.jid)
-    await message.reply("*_Revoked_*")
+    await message.reply("*_Revoked!_*")
   }
 );
 
+/* Copyright (C) 2024 Louis-X0.
+Licensed under the  GPL-3.0 License;
+you may not use this file except in compliance with the License.
+Louis-X0 - Zeta-X0
+*/
 
 command(
   {
@@ -408,6 +392,11 @@ command(
   }
 );
 
+/* Copyright (C) 2024 Louis-X0.
+Licensed under the  GPL-3.0 License;
+you may not use this file except in compliance with the License.
+Louis-X0 - Zeta-X0
+*/
 
   command(
   {
@@ -424,6 +413,12 @@ command(
   }
 );
 
+/* Copyright (C) 2024 Louis-X0.
+Licensed under the  GPL-3.0 License;
+you may not use this file except in compliance with the License.
+Louis-X0 - Zeta-X0
+*/
+
 command(
   {
     pattern: "unlock ?(.*)",
@@ -439,6 +434,11 @@ command(
   }
 );
 
+/* Copyright (C) 2024 Louis-X0.
+Licensed under the  GPL-3.0 License;
+you may not use this file except in compliance with the License.
+Louis-X0 - Zeta-X0
+*/
 
 command(
   {
@@ -450,7 +450,7 @@ command(
   async (message, match) => {
     if (!message.isGroup) return await message.reply("*_This command only works in group chats_*")
     match = match || message.reply_message.text
-    if (!match) return await message.reply("*_Need Subject!_\n_Example: gname Ezra-MD Support!_.*")
+    if (!match) return await message.reply("*_Need Subject!_*\n*_Example: gname Ezra-MD Support!_.*")
     var { restrict } = message.client.groupMetadata(message.jid);;
     if (restrict && !(await isAdmin(message))) return await message.reply("*_I'm not admin_*");
     await message.client.groupUpdateSubject(message.jid, match)
@@ -458,6 +458,11 @@ command(
   }
 );
 
+/* Copyright (C) 2024 Louis-X0.
+Licensed under the  GPL-3.0 License;
+you may not use this file except in compliance with the License.
+Louis-X0 - Zeta-X0
+*/
 
 command(
   {
@@ -469,10 +474,29 @@ command(
   async (message, match) => {
     if (!message.isGroup) return await message.reply("*_This command only works in group chats_*")
     match = match || message.reply_message.text
-    if (!match) return await message.reply("*_Need Description!\nExample: gdesc Ezra-XD Wa BOT!_*")
+    if (!match) return await message.reply("*_Need Description!_*\n*_Example: gdesc Ezra-XD Wa BOT!_*")
     const participants =  await message.client.groupMetadata(message.jid)
     if (participants && !(await isAdmin(message.jid, message.user, message.client))) return await message.reply("_I'm not admin_");
     await message.client.groupUpdateDescription(message.jid, match)
     return await message.reply("_Description updated_")
+  }
+);
+
+/* Copyright (C) 2024 Louis-X0.
+Licensed under the  GPL-3.0 License;
+you may not use this file except in compliance with the License.
+Louis-X0 - Zeta-X0
+*/
+
+command(
+  {
+    pattern: "left ?(.*)",
+    fromMe: true,
+    desc: "Left from the group",
+    type: "group",
+  },
+  async (message, match) => {
+    if (!message.isGroup) return await message.reply("*_This command only works in group chats_*")
+    await message.client.groupLeave(message.jid)
   }
 );
