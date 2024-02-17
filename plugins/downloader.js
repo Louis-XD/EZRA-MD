@@ -1,6 +1,6 @@
-const { command , isPrivate , getBuffer} = require("../lib");
+const { command , isPrivate , getBuffer } = require("../lib");
 const fetch = require("node-fetch");
-const { SPARKY_API, CAPTION } = require("../config");
+const { CAPTION } = require("../config");
 const axios = require("axios");
 const config = require("../config");
 
@@ -48,9 +48,9 @@ command(
 
 command(
     {
-        pattern: "video",
+        pattern: "yt",
         fromMe: isPrivate,
-        desc: "Video Downloader",
+        desc: "Video Downloader 720p",
         type: "downloader",
     },
     async (message, match) => {
@@ -60,5 +60,21 @@ var ytmp4 = await
         var yt = await ytmp4.json()
         await message.client.sendMessage(message.jid, { text: `*Downloading ${yt.data.title}*` },{ quoted: message})
                     await message.client.sendMessage(message.jid,{video:{ url: yt.data.vid_720p}, caption : `_*${yt.data.title}*_`}, {quoted : message})
+    }
+    );
+
+command(
+    {
+        pattern: "video",
+        fromMe: isPrivate,
+        desc: "Yt Video Downloader",
+        type: "downloader",
+    },
+    async (message, match) => {
+        if (!match) return await message.sendMessage("*_Need Video Name Or Url_*");
+let result = await axios.get(`https://api-aswin-sparky.koyeb.app/api/downloader/yt_video?search=${match}`);
+var yt = await result.data
+await message.client.sendMessage(message.jid, { text: `*_Downloading ${yt.result.title}_*` },{ quoted: message})
+await message.client.sendMessage(message.jid, { video :{ url: yt.result.url }, caption: `*${yt.result.title}*`}, {quoted: message })
     }
     );
