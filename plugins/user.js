@@ -1,4 +1,7 @@
-const { command,isPrivate } = require("../lib");
+const { 
+  command,
+  isPrivate 
+} = require("../lib");
 
 /* Copyright (C) 2022 X-Electra.
 Licensed under the  GPL-3.0 License;
