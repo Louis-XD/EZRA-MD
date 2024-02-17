@@ -32,7 +32,7 @@ command(
   async (message, match) => {
     if (message.isGroup) {
       let jid = message.mention[0] || message.reply_message.jid;
-      if (!jid) return await message.reply("_Reply to a person or mention_");
+      if (!jid) return await message.reply("*_Need a number/reply/mention!_*");
       await message.block(jid);
       return await message.sendMessageMessage(`_@${jid.split("@")[0]} Blocked_`, {
         mentions: [jid],
@@ -60,14 +60,14 @@ command(
   async (message, match) => {
     if (message.isGroup) {
       let jid = message.mention[0] || message.reply_message.jid;
-      if (!jid) return await message.reply("_Reply to a person or mention_");
+      if (!jid) return await message.reply("*_Need a number/reply/mention!_*");
       await message.block(jid);
-      return await message.sendMessage(`_@${jid.split("@")[0]} unblocked_`, {
+      return await message.sendMessage(`*_@${jid.split("@")[0]} unblocked_*`, {
         mentions: [jid],
       });
     } else {
       await message.unblock(message.jid);
-      return await message.reply("_User unblocked_");
+      return await message.reply("*_User unblocked_*");
     }
   }
 );
