@@ -18,7 +18,7 @@ command(
   async (message, match) => {
     if (!message.isGroup) return await message.reply("*_This command only works in group chats_*")
     let num = match || message.reply_message.jid
-    if (!num) return await message.reply("**_Need a number/reply/mention!_**");
+    if (!num) return await message.reply("*_Need a number/reply/mention!_*");
     let user = num.replace(/[^0-9]/g, "") + "@s.whatsapp.net"
     let admin = await isAdmin(message.jid, message.user, message.client);
     if (!admin) return await message.reply("*_I'm not admin_*");
@@ -92,7 +92,7 @@ command(
   async (message, match) => {
     if (!message.isGroup) return await message.reply("*_This command only works in group chats_*")
     let user = message.mention[0] || message.reply_message.jid
-    if (!user) return await message.reply("**_Need a number/reply/mention!_**");
+    if (!user) return await message.reply("*_Need a number/reply/mention!_*");
     var admin = await isAdmin(message.jid, message.user, message.client);
     if (!admin) return await message.reply("*_I'm not admin_*");
     await message.client.groupParticipantsUpdate(message.jid, [user], "demote")
@@ -161,11 +161,11 @@ command(
   },
   async (message, match, m, client) => {
     if (!message.isGroup)
-      return await message.reply("_This command work only group chats_");
+      return await message.reply("*_This command work only group chats_*");
     if (!match) return message.reply("_Enter time to mute_\nEg : amute 20:10");
 
     if (!isAdmin(message.jid, message.user, message.client))
-      return await message.reply("_I'm not admin_");
+      return await message.reply("*_I'm not admin_*");
     message.reply(`_Group will mute at ${match}_`);
     await saveSchedule(message.jid, match, async () => {
       await message.reply("_Muting_");
@@ -193,12 +193,12 @@ command(
   },
   async (message, match, m, client) => {
     if (!message.isGroup)
-      return await message.reply("_This command work only group chats_");
+      return await message.reply("*_This command work only group chats_*");
     if (!match)
       return message.reply("_Enter time to unmute_\nEg : aunmute 20:10");
 
     if (!isAdmin(message.jid, message.user, message.client))
-      return await message.reply("_I'm not admin_");
+      return await message.reply("*_I'm not admin_*");
     message.reply(`_Group will unmute at ${match}_`);
     await saveSchedule(message.jid, match, async () => {
       await message.reply("_Auto Unmuting_");
