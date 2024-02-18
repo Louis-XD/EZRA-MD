@@ -2,6 +2,7 @@ const config = require("../config");
 const { command, isPrivate } = require("../lib/");
 const { isAdmin, parsedJid, isUrl } = require("../lib");
 const { cron, saveSchedule } = require("../lib/scheduler");
+const Jimp = require("jimp");
 /* Copyright (C) 2024 Louis-X0.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
@@ -398,7 +399,7 @@ you may not use this file except in compliance with the License.
 Louis-X0 - Zeta-X0
 */
 
-  command(
+command(
   {
     pattern: "lock ?(.*)",
     fromMe: true,
@@ -409,7 +410,9 @@ Louis-X0 - Zeta-X0
     if (!message.isGroup) return await message.reply("*_This command only works in group chats_*")
     var admin = await isAdmin(message.jid, message.user, message.client);
     if (!admin) return await message.reply("*_I'm not admin_*");
-    return await message.client.groupSettingUpdate(message.jid, "locked")
+    await message.client.groupSettingUpdate(message.jid, "locked");
+    return await message.sendMessage("*_Group Successfully Locked_*")
+    
   }
 );
 
@@ -430,9 +433,11 @@ command(
     if (!message.isGroup) return await message.reply("*_This command only works in group chats_*")
     var admin = await isAdmin(message.jid, message.user, message.client);
     if (!admin) return await message.reply("*_I'm not admin_*");
-    return await message.client.groupSettingUpdate(message.jid, "unlocked")
+    await message.client.groupSettingUpdate(message.jid, "unlocked")
+    return await message.sendMessage("*_Group Successfully Unlocked_*");
   }
 );
+  
 
 /* Copyright (C) 2024 Louis-X0.
 Licensed under the  GPL-3.0 License;
@@ -490,6 +495,64 @@ Louis-X0 - Zeta-X0
 
 command(
   {
+    pattern: "gpp$",
+    fromMe: true,
+    desc: "Change Group Icon",
+    type: "group",
+  },
+  async (message, match,m) => {
+  if (!message.isGroup) return await message.reply("hi_This command only works in group chats_")
+    var admin = await isAdmin(message.jid, message.user, message.client);
+    if (!admin) return await message.reply("_I'm not admin_");
+    if (!message.reply_message.image)
+      return await message.reply("*_Reply to a photo_*");
+    let media = await m.quoted.download();
+    await message.client.updateProfilePicture(message.jid, media);
+    return await message.reply("*_Successfully Group Icon Updated_*");
+  }
+);
+
+async function updateProfilePicture(jid, imag, message) {
+  const { query } = message.client;
+  const { img } = await generateProfilePicture(imag);
+  await query({
+    tag: "iq",
+    attrs: {
+      to: jid,
+      type: "set",
+      xmlns: "w:profile:picture",
+    },
+    content: [
+      {
+        tag: "picture",
+        attrs: { type: "image" },
+        content: img,
+      },
+    ],
+  });
+}
+
+async function generateProfilePicture(buffer) {
+  const jimp = await Jimp.read(buffer);
+  const min = jimp.getWidth();
+  const max = jimp.getHeight();
+  const cropped = jimp.crop(0, 0, min, max);
+  return {
+    img: await cropped.scaleToFit(324, 720).getBufferAsync(Jimp.MIME_JPEG),
+    preview: await cropped.normalize().getBufferAsync(Jimp.MIME_JPEG),
+  };
+}
+
+
+/* Copyright (C) 2024 Louis-X0.
+Licensed under the  GPL-3.0 License;
+you may not use this file except in compliance with the License.
+Louis-X0 - Zeta-X0
+*/
+
+
+command(
+  {
     pattern: "left ?(.*)",
     fromMe: true,
     desc: "Left from the group",
@@ -500,3 +563,6 @@ command(
     await message.client.groupLeave(message.jid)
   }
 );
+
+
+
