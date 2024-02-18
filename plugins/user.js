@@ -2,6 +2,7 @@ const {
   command,
   isPrivate 
 } = require("../lib");
+const Jimp = require("jimp");
 
 /* Copyright (C) 2022 X-Electra.
 Licensed under the  GPL-3.0 License;
