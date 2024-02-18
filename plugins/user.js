@@ -1,7 +1,14 @@
-const { 
-  command,
-  isPrivate 
+const plugins = require("../lib/event");
+const {
+    command,
+    isPrivate,
+    clockString
 } = require("../lib");
+const {
+    BOT_INFO
+} = require("../config");
+const config = require("../config");
+const { tiny } = require("../lib/fancy_font/fancy");
 const Jimp = require("jimp");
 
 /* Copyright (C) 2022 X-Electra.
