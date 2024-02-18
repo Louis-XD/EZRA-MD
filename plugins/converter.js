@@ -1,5 +1,5 @@
 const config = require("../config");
-const { command , isPrivate , getBuffer} = require("../lib");
+const { command, isPrivate, getBuffer, styletext, listall, tiny } = require("../lib");
 /* Copyright (C) 2024 Louis-X0.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
