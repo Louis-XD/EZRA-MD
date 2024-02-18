@@ -9,6 +9,8 @@ const stream = require("stream");
 const { promisify } = require("util");
 const pipeline = promisify(stream.pipeline);
 const fs = require("fs");
+const { downloadMediaMessage } = require('@whiskeysockets/baileys');
+
 command(
   {
     pattern: "qr",
