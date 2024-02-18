@@ -130,3 +130,40 @@ command(
     }
   }
 );
+
+
+
+command(
+  {
+    pattern: "vo",
+    fromMe: isPrivate,
+    desc: "anti viewOnce",
+    type: "user",
+  },
+  async (message, match, m) => {
+if (!message.reply_message || (!m.quoted.message.viewOnceMessageV2 && !m.quoted.message.viewOnceMessageV2Extension)) return await message.reply('*_Reply at viewOnce message!_*')
+    if(m.quoted.message.viewOnceMessageV2Extension){
+const downloadedMedia1 = await downloadMediaMessage(m.quoted.message.viewOnceMessageV2Extension, 'buffer', {}, { reuploadRequest: message.client.updateMediaMessage })
+await message.client.sendMessage(message.jid, { audio :downloadedMedia1 ,  mimetype:"audio/mpeg", contextInfo: { externalAdReply: {
+title: "𝐄𝐙𝐑𝐀-𝐗𝐗𝐃",
+body: "𝘼𝙣𝙩𝙞 𝙫𝙞𝙚𝙬𝙊𝙣𝙘𝙚 𝙎𝙪𝙘𝙘𝙚𝙨𝙨𝙛𝙪𝙡",
+sourceUrl: "",
+mediaUrl: "𝙡",
+mediaType: 1,
+showAdAttribution: true,
+renderLargerThumbnail: false,
+thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }} },{ quoted: message })
+} else if(m.quoted.message.viewOnceMessageV2){
+const downloadedMedia = await downloadMediaMessage(m.quoted.message.viewOnceMessageV2, 'buffer', {}, { reuploadRequest: message.client.updateMediaMessage })
+await message.client.sendMessage(message.jid, {image: downloadedMedia, contextInfo: { externalAdReply: {
+title: "𝐄𝐙𝐑𝐀-𝐗𝐃",
+body: "𝘼𝙣𝙩𝙞 𝙫𝙞𝙚𝙬𝙊𝙣𝙘𝙚 𝙎𝙪𝙘𝙘𝙚𝙨𝙨𝙛𝙪𝙡",
+sourceUrl: "",
+mediaUrl: "",
+mediaType: 1,
+showAdAttribution: true,
+renderLargerThumbnail: false,
+thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }} },{ quoted: message })
+}
+  }
+);
