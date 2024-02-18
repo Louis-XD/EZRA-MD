@@ -2,7 +2,8 @@ const plugins = require("../lib/event");
 const {
     command,
     isPrivate,
-    clockString
+    clockString,
+    getUrl
 } = require("../lib");
 const {
     BOT_INFO
@@ -10,6 +11,9 @@ const {
 const config = require("../config");
 const { tiny } = require("../lib/fancy_font/fancy");
 const Jimp = require("jimp");
+const got = require("got");
+const fs = require("fs");
+const { PluginDB, installPlugin } = require("../lib/database/plugins");
 
 /* Copyright (C) 2022 X-Electra.
 Licensed under the  GPL-3.0 License;
