@@ -78,3 +78,21 @@ await message.client.sendMessage(message.jid, { text: `*_Downloading ${yt.result
 await message.client.sendMessage(message.jid, { video :{ url: yt.result.url }, caption: `*${yt.result.title}*`}, {quoted: message })
     }
     );
+
+command(
+    {
+        pattern: "spotify",
+        fromMe: isPrivate,
+        desc: "Spotify Downloader",
+        type: "downloader",
+    },
+    async (message, match) => {
+        if (!match) return await message.sendMessage("*_Need Spotify Song Url_*");
+var sex = await fetch(`https://vihangayt.me/download/spotify?url=${match}`);
+        var fek = await sex.json();
+        message.reply(`*_Downloading ${fek.data.album_name}_*`)
+        await message.client.sendMessage(message.jid, { audio :{ url: fek.data.url } , mimetype : 'audio/mpeg' },  {quoted: message })
+    }
+    );
+
+
