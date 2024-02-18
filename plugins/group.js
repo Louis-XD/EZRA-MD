@@ -119,7 +119,7 @@ command(
       return await message.reply("*_This command work only in group chats_*");
     if (!isAdmin(message.jid, message.user, message.client))
       return await message.reply("*_I'm not admin_*");
-    await message.reply("*_Muted_*");
+    await message.reply("*_Muted!_*");
     return await client.groupSettingUpdate(message.jid, "announcement");
   }
 );
@@ -142,7 +142,7 @@ command(
       return await message.reply("*_This command work only in groups_*");
     if (!isAdmin(message.jid, message.user, message.client))
       return await message.reply("*_I'm not admin_*");
-    await message.reply("*_Unmuted_*");
+    await message.reply("*_Unmuted!_*");
     return await client.groupSettingUpdate(message.jid, "not_announcement");
   }
 );
@@ -306,7 +306,7 @@ command(
     if (!message.isGroup) return;
     if (config.ANTILINK)
       if (isUrl(match)) {
-        await message.reply("_Link detected_");
+        await message.reply("*_Link detected_*");
         let botadmin = await isAdmin(message.jid, message.user, message.client);
         let senderadmin = await isAdmin(
           message.jid,
@@ -321,7 +321,7 @@ command(
             return await message[config.ANTILINK_ACTION]([message.participant]);
           }
         } else {
-          return await message.reply("_I'm not admin_");
+          return await message.reply("*_I'm not admin_*");
         }
       }
   }
@@ -345,7 +345,7 @@ command(
     var admin = await isAdmin(message.jid, message.user, message.client);
     if (!admin) return await message.reply("*_I'm not admin_*");
     const response = await message.client.groupInviteCode(message.jid)
-    await message.reply(`https://chat.whatsapp.com/${response}`)
+    await message.reply(`_https://chat.whatsapp.com/${response}_`)
   }
 );
 
@@ -459,7 +459,7 @@ command(
     var { restrict } = message.client.groupMetadata(message.jid);;
     if (restrict && !(await isAdmin(message))) return await message.reply("*_I'm not admin_*");
     await message.client.groupUpdateSubject(message.jid, match)
-    return await message.reply("_Subject updated_")
+    return await message.reply("*_Subject updated_*")
   }
 );
 
@@ -483,7 +483,7 @@ command(
     const participants =  await message.client.groupMetadata(message.jid)
     if (participants && !(await isAdmin(message.jid, message.user, message.client))) return await message.reply("_I'm not admin_");
     await message.client.groupUpdateDescription(message.jid, match)
-    return await message.reply("_Description updated_")
+    return await message.reply("*_Description updated_*")
   }
 );
 
@@ -501,9 +501,9 @@ command(
     type: "group",
   },
   async (message, match,m) => {
-  if (!message.isGroup) return await message.reply("hi_This command only works in group chats_")
+  if (!message.isGroup) return await message.reply("*_This command only works in group chats_*")
     var admin = await isAdmin(message.jid, message.user, message.client);
-    if (!admin) return await message.reply("_I'm not admin_");
+    if (!admin) return await message.reply("*_I'm not admin_*");
     if (!message.reply_message.image)
       return await message.reply("*_Reply to a photo_*");
     let media = await m.quoted.download();
