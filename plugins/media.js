@@ -25,6 +25,9 @@ const stream = require("stream");
 const { promisify } = require("util");
 const pipeline = promisify(stream.pipeline);
 const fs = require("fs");
+const fetch = require("node-fetch");
+const config = require("../config");
+const { CAPTION } = require("../config");
 /* Copyright (C) 2022 X-Electra.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
@@ -120,9 +123,25 @@ command(
 if (!message.reply_message || (!message.reply_message.video && !message.reply_message.image)) return await message.reply('*_Reply at image/video!_*')
 let res = await m.quoted.download();
       if(message.reply_message.video){
-       await message.client.sendMessage(message.jid, { video :res ,  mimetype:"video/mp4", caption: (match)}, {quoted: message })
+       await message.client.sendMessage(message.jid, { video :res ,  mimetype:"video/mp4", contextInfo: { externalAdReply: {
+title: "𝐄𝐙𝐑𝐀-𝐗𝐃",
+body: "𝘾𝙖𝙥𝙩𝙞𝙤𝙣 𝘾𝙝𝙖𝙣𝙜𝙚𝙙",
+sourceUrl: "",
+mediaUrl: "",
+mediaType: 1,
+showAdAttribution: true,
+renderLargerThumbnail: false,
+thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }}, caption: (match)}, {quoted: message })
       } else if(message.reply_message.image){
-      await message.client.sendMessage(message.jid, { image :res ,  mimetype:"image/jpeg",caption: (match)}, {quoted: message })
+      await message.client.sendMessage(message.jid, { image :res ,  mimetype:"image/jpeg", contextInfo: { externalAdReply: {
+title: "𝐄𝐙𝐑𝐀-𝐗𝐃",
+body: "𝘾𝙖𝙥𝙩𝙞𝙤𝙣 𝘾𝙝𝙖𝙣𝙜𝙚𝙙",
+sourceUrl: "",
+mediaUrl: "",
+mediaType: 1,
+showAdAttribution: true,
+renderLargerThumbnail: false,
+thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }}, caption: (match)}, {quoted: message })
 }
   }
   );
@@ -148,7 +167,15 @@ command(
     if (message.reply_message.mtype !== "stickerMessage")
       return await message.reply("*_Not a sticker_*");
     let buff = await m.quoted.download();
-    return await message.sendMessage(buff, {}, "image");
+    return await message.sendMessage(buff,{mimetype: 'image/jpeg', contextInfo: { externalAdReply: {
+title: "𝐄𝐙𝐑𝐀-𝐗𝐃",
+body: "𝘾𝙤𝙣𝙫𝙚𝙧𝙩𝙚𝙙 𝙏𝙤 𝙋𝙝𝙤𝙩𝙤",
+sourceUrl: "",
+mediaUrl: "",
+mediaType: 1,
+showAdAttribution: true,
+renderLargerThumbnail: false,
+thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }}, caption: (config.CAPTION), quoted: message }, "image")
   }
 );
 
@@ -172,7 +199,15 @@ command(
       return await message.reply("*_Not a sticker_*");
     let buff = await m.quoted.download();
     let buffer = await webp2mp4(buff);
-    return await message.sendMessage(buffer, {}, "video");
+    return await message.sendMessage(buffer,{mimetype: 'video/mp4', contextInfo: { externalAdReply: {
+title: "𝐄𝐙𝐑𝐀-𝐗𝐃",
+body: "𝘾𝙤𝙣𝙫𝙚𝙧𝙩𝙚𝙙 𝙏𝙤 𝙈𝙥𝟰",
+sourceUrl: "",
+mediaUrl: "",
+mediaType: 1,
+showAdAttribution: true,
+renderLargerThumbnail: false,
+thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }}, caption: (config.CAPTION), quoted: message }, "video")
   }
 );
 
@@ -181,6 +216,67 @@ Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
 X-Asena - X-Electra
 */
+
+const { toAudio } = require("../lib/media");
+command(
+  {
+    pattern: "mp3",
+    fromMe: isPrivate,
+    desc: "converts video/audio/voice to mp3",
+    type: "converter",
+  },
+  async (message, match, m) => {
+    if (!message.reply_message || (!message.reply_message.video && !message.reply_message.audio)) return await message.reply('*_Reply at audio/voice/video!_*')  
+    let buff = await m.quoted.download();
+    buff = await toAudio(buff, "mp3");
+     await message.sendMessage(buff,{mimetype: 'audio/mpeg', contextInfo: { externalAdReply: {
+title: "𝐄𝐙𝐑𝐀-𝐗𝐃",
+body: "𝘾𝙤𝙣𝙫𝙚𝙧𝙩𝙚𝙙 𝙏𝙤 𝙈𝙥𝟯",
+sourceUrl: "",
+mediaUrl: "",
+mediaType: 1,
+showAdAttribution: true,
+renderLargerThumbnail: false,
+thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }}, quoted: message }, "audio");
+  }
+);
+
+command(
+  {
+    pattern: "gif",
+    fromMe: isPrivate,
+    desc: "animated sticker/video to gif",
+    type: "converter",
+  },
+  async (message, match, m) => {
+    if (!message.reply_message)
+      return await message.reply("*_Reply to a animated sticker/video_*");
+    if (message.reply_message.mtype == "stickerMessage"){
+      let buff = await m.quoted.download();
+   let buffer = await webp2mp4(buff);
+   await message.client.sendMessage(message.jid, { video: { url : buffer }, gifPlayback: true, contextInfo: { externalAdReply: {
+title: "𝐄𝐙𝐑𝐀-𝐗𝐃",
+body: "𝘾𝙤𝙣𝙫𝙚𝙧𝙩𝙚𝙙 𝙏𝙤 𝙂𝙞𝙛",
+sourceUrl: "",
+mediaUrl: "",
+mediaType: 1,
+showAdAttribution: true,
+renderLargerThumbnail: false,
+thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }}, caption: (config.CAPTION)},{ quoted: message });
+   } else if(message.reply_message.video){
+    let buff = await m.quoted.download();
+   await message.client.sendMessage(message.jid, { video: buff, gifPlayback: true, contextInfo: { externalAdReply: {
+title: "𝐄𝐙𝐑𝐀-𝐗𝐃",
+body: "𝘾𝙤𝙣𝙫𝙚𝙧𝙩𝙚𝙙 𝙏𝙤 𝙂𝙞𝙛",
+sourceUrl: "",
+mediaUrl: "",
+mediaType: 1,
+showAdAttribution: true,
+renderLargerThumbnail: false,
+thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }}, caption: (config.CAPTION)},{ quoted: message });
+  }
+  }
+);
 /*
 command(
   {
@@ -266,28 +362,13 @@ you may not use this file except in compliance with the License.
 X-Asena - X-Electra
 */
 
-const { toAudio } = require("../lib/media");
-command(
-  {
-    pattern: "mp3",
-    fromMe: isPrivate,
-    desc: "converts video/audio/voice to mp3",
-    type: "converter",
-  },
-  async (message, match, m) => {
-    if (!message.reply_message || (!message.reply_message.video && !message.reply_message.audio)) return await message.reply('*_Reply at audio/voice/video!_*')  
-    let buff = await m.quoted.download();
-    buff = await toAudio(buff, "mp3");
-     await message.sendMessage(buff, { mimetype: "audio/mpeg", quoted: message }, "audio");
-  }
-);
 /* Copyright (C) 2022 X-Electra.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
 X-Asena - X-Electra
 */
 
-command(
+/*command(
   {
     pattern: "fetch",
     fromMe: isPrivate,
@@ -315,7 +396,7 @@ command(
       message.reply("_No content found_");
     }
   }
-);
+);*/
 /* Copyright (C) 2022 X-Electra.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
@@ -325,7 +406,7 @@ X-Asena - X-Electra
 
 //message.reply_message.text
 
-command(
+/*command(
   {
     pattern: "yts",
     fromMe: isPrivate,
@@ -359,7 +440,7 @@ command(
       });
     });
   }
-);
+);*/
 
 /* Copyright (C) 2022 X-Electra.
 Licensed under the  GPL-3.0 License;
@@ -394,7 +475,7 @@ you may not use this file except in compliance with the License.
 X-Asena - X-Electra
 */
 
-command(
+/*command(
   {
     pattern: "yta",
     fromMe: isPrivate,
@@ -416,4 +497,4 @@ command(
       );
     });
   }
-);
+);*/
