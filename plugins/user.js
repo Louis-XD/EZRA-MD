@@ -3,7 +3,10 @@ const {
     command,
     isPrivate,
     clockString,
-    getUrl
+    getUrl,
+    parsedJid,
+    isAdmin
+    
 } = require("../lib");
 const {
     BOT_INFO
@@ -450,4 +453,18 @@ command(
     }
   }
 );
+
+
+command(
+    {
+	pattern: 'setbio(.*)',
+	fromMe: true,
+	desc: 'to change your profile status',
+	type: 'user'
+}, async (message, match) => {
+	match = match || message.reply_message.text
+	if (!match) return await message.reply('*_Need Text_!*\n *Example: setbio _Ezra-XD_*.')
+	await message.client.updateProfileStatus(match)
+	await message.reply('*_Successfully bio updated_*')
+})
 
