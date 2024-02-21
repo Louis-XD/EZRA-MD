@@ -227,18 +227,18 @@ Description: ${i.desc}\`\`\``);
       let [date, time] = new Date()
         .toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })
         .split(",");
-      let menu = `╭━━━〔 ${BOT_INFO.split(";")[0]} 〕━━━┈
-┃    ╭──────────────
-┃  ✺ │  *OWNER*:  ${BOT_INFO.split(";")[1]}
-┃  ✺ │  *DATE*: ${date}
-┃  ✺ │  *TIME*: ${time}
-┃  ✺ │  *COMMANDS*: ${plugins.commands.length} 
-┃  ✺ │  *VERSION*: 1.0.1
-┃  ✺ │  *RAM*: 14.8 GB/ 62.77 GB
-┃  ✺ │  *PLATFROM*: linux
-┃    ╰──────────────
+      let menu = `\n╭━━━〔 ${BOT_INFO.split(";")[0]} 〕━━━┈
+    ╭──────────────
+  ✺ │  *OWNER*:  ${BOT_INFO.split(";")[1]}
+  ✺ │  *DATE*: ${date}
+  ✺ │  *TIME*: ${time}
+  ✺ │  *COMMANDS*: ${plugins.commands.length} 
+  ✺ │  *VERSION*: 1.0.1
+  ✺ │  *RAM*: 14.8 GB/ 62.77 GB
+  ✺ │  *PLATFROM*: linux
+    ╰──────────────
 ╰━━━━━━━━━━━━━━━\n\n  ▎▍▌▌▉▏▎▌▉▐▏▌
-  ▎▍▌▌▉▏▎▌▉▐▏▌\n   𝐇𝐀𝐍𝐍𝐀-𝐗𝐎-𝐌𝐃\n`
+  ▎▍▌▌▉▏▎▌▉▐▏▌\n         𝐄𝐙𝐑𝐀-𝐗𝐃\n`
 menu += `╭─────────────┈⊷\n`;
 
       let cmnd = [];
@@ -272,14 +272,14 @@ menu += `╭─────────────┈⊷\n`;
       menu += `╰─────────────┈⊷`;
       let penu = tiny(menu)
       let img = config.BOT_INFO.split(';')[2]
-      return await client.sendMessage(message.jid,{image: {url: img}, caption: (penu), contextInfo: { externalAdReply: {
-title: config.BOT_INFO.split(';')[0],
+      return await client.sendMessage(message.jid,{image: {url: img}, fileLength: "5555544444", caption: (penu), contextInfo: { externalAdReply: {
+title: "𝐄𝐙𝐑𝐀-𝐗𝐃",
 sourceUrl: "",
 mediaUrl: "https://instagram.com/abhiiiiiyh",
 mediaType: 1,
 showAdAttribution: true,
 renderLargerThumbnail: false,
-thumbnailUrl: config.BOT_INFO.split(';')[2] }}
+thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }}
     })
     }
 }catch(e){
