@@ -7,7 +7,7 @@ command(
         pattern: "gitinfo",
         fromMe: isPrivate,
         desc: "github user details",
-        type: "searcher",
+        type: "misc",
     },
     async (message, match) => {
         if (!match) return await message.sendMessage("*_Need Github UserName_*");
@@ -58,7 +58,7 @@ command(
         pattern: "ig",
         fromMe: isPrivate,
         desc: "instagram details",
-        type: "searcher",
+        type: "misc",
     },
     async (message, match) => {
         if (!match) return await message.sendMessage("*_Need IG Username_*");
@@ -84,7 +84,7 @@ command(
         pattern: "sspotify",
         fromMe: isPrivate,
         desc: "Song Downloader",
-        type: "searcher",
+        type: "misc",
     },
     async (message, match) => {
         if (!match) return await message.sendMessage("*_Need Song Name_*");
