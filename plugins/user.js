@@ -232,7 +232,8 @@ Description: ${i.desc}\`\`\``);
   ✺ │  *OWNER*:  ${BOT_INFO.split(";")[1]}
   ✺ │  *DATE*: ${date}
   ✺ │  *TIME*: ${time}
-  ✺ │  *COMMANDS*: ${plugins.commands.length} 
+  ✺ │  *COMMANDS*: ${plugins.commands.length}
+  ✺ │  *MODE*: ${config.WORK_TYPE}
   ✺ │  *VERSION*: 1.0.1
   ✺ │  *RAM*: 14.8 GB/ 62.77 GB
   ✺ │  *PLATFROM*: linux
