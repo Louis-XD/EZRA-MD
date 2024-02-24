@@ -1,4 +1,4 @@
->const { command, isPrivate } = require("../lib/");
+const { command, isPrivate } = require("../lib/");
 const axios = require("axios");
 command(
     {
