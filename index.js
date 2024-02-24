@@ -60,7 +60,7 @@ async function Abhiy() {
     const { connection, lastDisconnect } = s;
     if (connection === "connecting") {
       console.log("Ezra");
-      console.log("Connecting to WhatsApp...!! Please Wait.");
+      console.log("𝗖𝗼𝗻𝗻𝗲𝗰𝘁𝗶𝗻𝗴 𝗘𝘇𝗿𝗮𝗮𝗮𝗮𝗵𝗵 々");
     }
 
     if (
@@ -75,8 +75,8 @@ async function Abhiy() {
 
     if (connection === "open") {
     
-      console.log("Reading Session Id🔮");
-      console.log("Installing External Plugins...");
+      console.log("〄 𝗥𝗲𝗮𝗱𝗶𝗻𝗴 𝗦𝗲𝘀𝘀𝗶𝗼𝗻 𝗜’𝗱 〄");
+      console.log("𝗜𝗻𝘀𝘁𝗮𝗹𝗹𝗶𝗻𝗴 𝗣𝗹𝘂𝗴𝗶𝗻𝘀🧩...");
 
       let plugins = await PluginDB.findAll();
       plugins.map(async (plugin) => {
@@ -92,14 +92,14 @@ async function Abhiy() {
           }
         }
       });
-      console.log(" 𝗦𝗲𝘀𝘀𝗶𝗼𝗻 𝗜’𝗱 𝗖𝗼𝗻𝗻𝗲𝗰𝘁𝗲𝗱✅🔗");
+      console.log(" 𝗦𝗲𝘀𝘀𝗶𝗼𝗻 𝗜’𝗱 𝗖𝗼𝗻𝗻𝗲𝗰𝘁𝗲𝗱🔗");
 
       fs.readdirSync("./plugins").forEach((plugin) => {
         if (path.extname(plugin).toLowerCase() == ".js") {
           require("./plugins/" + plugin);
         }
       });
-      console.log(" 𝗘𝘇𝗿𝗮 𝗫𝗗 𝗜𝘀 𝗥𝘂𝗻𝗻𝗶𝗻𝗴🔋");
+      console.log(" 𝗘𝘇𝗿𝗮-𝗫𝗗 𝗜𝘀 𝗦𝘁𝗮𝗿𝘁𝗲𝗱🔋");
       let str = `〄  𝑬𝒁𝑹𝑨 𝑿𝑫 𝑺𝑻𝑨𝑹𝑻𝑬𝑫  〄 \n\n\n✘ 𝗩𝗘𝗥𝗦𝗜𝗢𝗡 : *_${require("./package.json").version }_* \n✘ 𝗣𝗟𝗨𝗚𝗜𝗡𝗦 : *_${events.commands.length}_* \n✘ 𝗠𝗢𝗗𝗘 : *_${config.WORK_TYPE}_* \n✘ 𝗦𝗨𝗗𝗢  : *_${config.SUDO}_*`;
       conn.sendMessage(conn.user.id, { text: str });
      try {
