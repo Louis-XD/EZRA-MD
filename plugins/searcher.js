@@ -87,3 +87,28 @@ renderLargerThumbnail: false,
 thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }}, caption: (resText4)},{quoted:message})
     }
     );
+
+
+command(
+    {
+        pattern: "ig",
+        fromMe: isPrivate,
+        desc: "instagram details",
+        type: "searcher",
+    },
+    async (message, match) => {
+        if (!match) return await message.sendMessage("*_Need IG Username_*");
+var {result} = await getJson(`https://levanter.onrender.com/ig?q=${match}`)
+const { name, username, avatar, posts, following, followers, description } =
+			result
+await message.client.sendMessage(message.jid, { image:{url: avatar} ,  mimetype:"image/jpeg", contextInfo: { externalAdReply: {
+title: "𝐄𝐙𝐑𝐀-𝐗𝐃",
+body: "𝙄𝙂 𝙙𝙚𝙩𝙖𝙞𝙡𝙨",
+sourceUrl: "",
+mediaUrl: "",
+mediaType: 1,
+showAdAttribution: true,
+renderLargerThumbnail: false,
+thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }}, caption: `\n*INSTAGRAM DETAILS*\n\n> *USERNAME* : ${username}\n> *NAME* : ${name}\n> *BIO* : ${description}\n> *POSTS* : ${posts}\n> *FOLLOWERS* : ${followers}\n> *FOLLOWING* : ${following}\n\n𝐄𝐙𝐑𝐀-𝐗𝐃`}, {quoted: message });
+    }
+    );
