@@ -41,7 +41,7 @@ command(
     async (message, match) => {
     	
     	
-   if (!match.includes("https://www.instagram"))return message.reply(`*_Need instagram Link 🪫_*`)
+   if (!match.includes("https://www.instagram"))return message.reply(`*_Need instagram Link_*`)
       var { data } = await getJson(`https://vihangayt.me/download/instagram?url=${match}`);
         
         for (let i = 0; i < data.data.length; i++) {
