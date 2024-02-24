@@ -100,7 +100,7 @@ async function Abhiy() {
         }
       });
       console.log(" Ezra-MD Working 🗿🩵");
-      let str = `𝑬𝒁𝑹𝑨 𝑴𝑫 𝑺𝑻𝑨𝑹𝑻𝑬𝑫 \n\n\n\n\n\n𝘝𝘌𝘙𝘚𝘐𝘖𝘕   : ${require("./package.json").version } \n𝘗𝘓𝘜𝘎𝘐𝘕𝘚  : ${events.commands.length} \nMODE  : ${config.WORK_TYPE} \n SUDO  : ${config.SUDO}`;
+      let str = `𝑬𝒁𝑹𝑨 𝑴𝑫 𝑺𝑻𝑨𝑹𝑻𝑬𝑫 \n\n\n\n⬧𝗩𝗘𝗥𝗦𝗜𝗢𝗡 : *${require("./package.json").version }* \n⬧𝗣𝗟𝗨𝗚𝗜𝗡𝗦 : *${events.commands.length}* \n⬧𝗠𝗢𝗗𝗘 : *${config.WORK_TYPE}* \n⬧𝗦𝗨𝗗𝗢  : *${config.SUDO}*`;
       conn.sendMessage(conn.user.id, { text: str });
      try {
         conn.ev.on("creds.update", saveCreds);
