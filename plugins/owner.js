@@ -21,7 +21,7 @@ command(
       'thumbnailUrl': "https://i.imgur.com/pae05LQ.jpeg",
       'mediaType': 0x1,
       'mediaUrl': "http://wa.me/+33757050684?text=Hi+Louis+Im+From+EZRA+XD+Git",
-      'sourceUrl': " ",
+      'sourceUrl': "http://wa.me/+33757050684?text=Hi+Louis+Im+From+EZRA+XD+Git",
       'showAdAttribution': true
     }
   }
