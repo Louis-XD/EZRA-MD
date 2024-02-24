@@ -1,4 +1,4 @@
-const { command, isPrivate } = require("../lib/");
+const { command, isPrivate, getJson } = require("../lib/");
 const fetch = require("node-fetch");
 const axios = require("axios");
 
