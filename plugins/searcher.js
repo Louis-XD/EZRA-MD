@@ -7,7 +7,7 @@ command(
         pattern: "sps",
         fromMe: isPrivate,
         desc: "spotify song searcher",
-        type: "misc",
+        type: "searcher",
     },
     async (message, match) => {
         if (!match) return await message.sendMessage("*_Need Song Name_*");
@@ -42,7 +42,7 @@ command(
         pattern: "ginfo",
         fromMe: isPrivate,
         desc: "github user details",
-        type: "misc",
+        type: "searcher",
     },
     async (message, match) => {
         if (!match) return await message.sendMessage("*_Need Github UserName_*");
