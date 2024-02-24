@@ -46,6 +46,7 @@
     "got": "^11.8.2",
     "heroku-client": "^3.1.0",
     "imgur": "^2.2.0",
+    "imgbb-uploader": "^1.5.1",
     "jimp": "^0.16.1",
     "jsdom": "^20.0.0",
     "lodash": "^4.17.21",
