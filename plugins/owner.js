@@ -11,7 +11,7 @@ command(
   'contacts': {
     'displayName': "𝐋𝐨𝐮𝐢𝐬-𝐗𝐃",
     'contacts': [{
-      'vcard': "BEGIN:VCARD\nVERSION:3.0\nFN:𝐄𝐙𝐑𝐀-𝐗𝐃\nORG:EZRA-XD BOT;\nTEL;type=CELL;type=VOICE;waid=919747257996:919747257996\nEND:VCARD"
+      'vcard': "BEGIN:VCARD\nVERSION:3.0\nFN:𝐄𝐙𝐑𝐀-𝐗𝐃\nORG:Louis-XD;\nTEL;type=CELL;type=VOICE;waid=33757050684:33757050684\nEND:VCARD"
     }]
   },
   'contextInfo': {
