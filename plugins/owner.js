@@ -20,8 +20,8 @@ command(
       'body': "𝗘𝗭𝗥𝗔 𝗫𝗗 𝗢𝗪𝗡𝗘𝗥",
       'thumbnailUrl': "https://i.imgur.com/pae05LQ.jpeg",
       'mediaType': 0x1,
-      'mediaUrl': " ",
-      'sourceUrl': "http://wa.me/+33757050684?text=Hi+Louis+Im+From+EZRA+XD+Git",
+      'mediaUrl': "http://wa.me/+33757050684?text=Hi+Louis+Im+From+EZRA+XD+Git",
+      'sourceUrl': " ",
       'showAdAttribution': true
     }
   }
