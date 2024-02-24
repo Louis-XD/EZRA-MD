@@ -1,4 +1,4 @@
-// LOT OF THANKS @SUHAID-BRO 🩵🫂 //
+// LOT OF THANKS SUHAID-BRO 🩵🫂 //
 
 
 
