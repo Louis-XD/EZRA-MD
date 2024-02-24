@@ -1,4 +1,4 @@
-const { command , isPrivate , getBuffer } = require("../lib");
+const { command , isPrivate , getBuffer, getJson } = require("../lib");
 const fetch = require("node-fetch");
 const { CAPTION } = require("../config");
 const axios = require("axios");
@@ -28,7 +28,8 @@ renderLargerThumbnail: false,
 thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }} }, {quoted: message })
     }
     );
-    
+
+
 command(
     {
         pattern: "insta",
@@ -39,34 +40,15 @@ command(
     async (message, match) => {
     	
     	
-   if (!match.includes("https://www.instagram"))return message.reply(`*_Need instagram link_*`)
-      var ig = await (await fetch(`https://vihangayt.me/download/instagram?url=${match}`)).json();
-     var igdl = ig;
-    let res = await getBuffer(`${igdl.data.data[0].url}`)
-    let mtype = igdl.data.data[0].type;
-      if(mtype == "video"){
-       await message.client.sendMessage(message.jid, { video :res ,  mimetype:"video/mp4", contextInfo: { externalAdReply: {
-title: "𝐄𝐙𝐑𝐀-𝐗𝐃",
-body: "𝙍𝙚𝙚𝙡 𝘿𝙤𝙬𝙣𝙡𝙤𝙖𝙙𝙚𝙙 𝙎𝙪𝙘𝙘𝙚𝙨𝙨𝙛𝙪𝙡𝙡𝙮",
-sourceUrl: "",
-mediaUrl: "",
-mediaType: 1,
-showAdAttribution: true,
-renderLargerThumbnail: false,
-thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }}, caption: (config.CAPTION)}, {quoted: message })
-      } else if(mtype == "image"){
-      await message.client.sendMessage(message.jid, { image :res ,  mimetype:"image/jpeg", contextInfo: { externalAdReply: {
-title: "𝐄𝐙𝐑𝐀-𝐗𝐃",
-body: "𝙋𝙤𝙨𝙩 𝘿𝙤𝙬𝙣𝙡𝙤𝙖𝙙𝙚𝙙 𝙎𝙪𝙘𝙘𝙚𝙨𝙨𝙛𝙪𝙡𝙡𝙮",
-sourceUrl: "",
-mediaUrl: "",
-mediaType: 1,
-showAdAttribution: true,
-renderLargerThumbnail: false,
-thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }}, caption: (config.CAPTION)}, {quoted: message })
-}
+   if (!match.includes("https://www.instagram"))return message.reply(`*_Need instagram Link_*`)
+      var { data } = await getJson(`https://vihangayt.me/download/instagram?url=${match}`);
+        
+        for (let i = 0; i < data.data.length; i++) {
+            await message.sendFromUrl(data.data[i].url)
+        }
              
 });
+
 
 command(
     {
@@ -141,6 +123,27 @@ renderLargerThumbnail: false,
 thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }}, }, {quoted: message })
     }
     );
+
+
+command(
+    {
+        pattern: "story",
+        fromMe: isPrivate,
+        desc: "Instagram story Downloader",
+        type: "downloader",
+    },
+    async (message, match) => {
+    	
+    	
+   if (!match.includes("https://www.instagram"))return message.reply(`*_Need a IG Story Link_*`)
+      var { data } = await getJson(`https://vihangayt.me/download/instagram?url=${match}`);
+        
+        for (let i = 0; i < data.data.length; i++) {
+            await message.sendFromUrl(data.data[i].url)
+        }
+             
+});
+
 
 
 
