@@ -146,5 +146,26 @@ command(
 
 
 
+command(
+    {
+        pattern: "pinterest",
+        fromMe: isPrivate,
+        desc: "pinterest Downloader",
+        type: "downloader",
+    },
+    async (message, match) => {
+        if (!match) return await message.sendMessage("*_Need Pinterest Url_*");
+var {result} = await getJson(`https://api.lokiser.xyz/api/pinterestdl?link=${match}`)
+await message.sendFromUrl(result.LokiXer.url,{ contextInfo: { externalAdReply: {
+title: "𝐄𝐙𝐑𝐀-𝐗𝐃",
+body: ``,
+sourceUrl: "",
+mediaUrl: "",
+mediaType: 1,
+showAdAttribution: true,
+renderLargerThumbnail: false,
+thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }}, caption: (config.CAPTION)}, {quoted: message})
+    }
+    );
 
 
