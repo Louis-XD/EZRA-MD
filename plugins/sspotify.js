@@ -5,7 +5,7 @@ command(
         pattern: "sspotify",
         fromMe: isPrivate,
         desc: "spotify song searcher",
-        type: "searcher",
+        type: "misc",
     },
     async (message, match) => {
         if (!match) return await message.sendMessage("*_Need Song Name_*");
