@@ -1,6 +1,6 @@
 const { command, isPrivate } = require("../lib/");
 command(
-  { pattern: "getsudo ?(.*)", 
+  { pattern: "gsudo ?(.*)", 
     fromMe: isPrivate, 
     desc: "shows sudo numbers", 
     type: "heroku" 
