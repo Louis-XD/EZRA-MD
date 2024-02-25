@@ -2,7 +2,7 @@ const { command } = require("../lib/");
 const axios = require("axios");
 command(
     {
-        pattern: "git",
+        pattern: "script",
         fromMe: false,
         desc: "ezra xd repo",
         type: "user",
