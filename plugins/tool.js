@@ -39,6 +39,40 @@ command(
 );
 
 
+command(
+    {
+        pattern: "find",
+        fromMe: isPrivate,
+        desc: "Song finder",
+        type: "search",
+    },
+    async (message, match, m, client) => {
+        if (!message.reply_message) return await message.reply('*_Reply at audio/video!_*');
+let buff = await m.quoted.download();
+    let data = await findMusic(buff);
+    if (!data.status) return message.reply(data);
+
+    let zeta = `\n*find results*\n
+> *Title* : ${data.title}            
+> *Artist* : ${data.artists}            
+> *Album* : ${data.album}            
+> *Genre* : ${data.genres}          
+> *Release* : ${data.release_date}
+> *YouTube Link* : ${data.youtube}
+> *Spotify Link* : ${data.spotify}\n\n𝐄𝐙𝐑𝐀-𝐗𝐃`
+                   await message.client.sendMessage(message.jid,{ document :{ url: "https://www.mediafire.com/file/n1qjfxjgvt0ovm2/IMG-20240211-WA0086_%25281%2529.pdf/file" }, fileName: "𝗙𝗜𝗡𝗗 𝗥𝗘𝗦𝗨𝗟𝗧" , mimetype: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileLength: "999999950", contextInfo: { externalAdReply: {
+title: "𝐄𝐙𝐑𝐀-𝐗𝐃",
+body: "",
+sourceUrl: "",
+mediaUrl: "",
+mediaType: 1,
+showAdAttribution: true,
+renderLargerThumbnail: false,
+thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }}, caption: (zeta)}, {quoted: message })
+    }
+    );
+
+
 
 command(
   {
