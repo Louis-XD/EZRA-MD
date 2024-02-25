@@ -38,52 +38,6 @@ command(
   }
 );
 
-command(
-  {
-    pattern: "find ?(.*)",
-    fromMe: true,
-    desc: "find the replied music",
-    type: "downloader",
-  },
-  async (message, match, msg) => {
-    if (!message.reply_message)
-      return await message.reply("_Reply to a audio or video_");
-    let buff = await msg.quoted.download();
-    let data = await findMusic(buff);
-    if (!data.status) return message.reply(data);
-
-    let buttonMessage = {
-      text: `Title : ${data.title}            
-  Artist : ${data.artists}            
-  Album : ${data.album}            
-  Genre : ${data.genres}          
-  Release : ${data.release_date}`,
-      templateButtons: [
-        {
-          urlButton: {
-            displayText: "Play on youtube",
-            url: data.youtube,
-          },
-        },
-        {
-          index: 1,
-          urlButton: {
-            displayText: "Play on spotify",
-            url: data.spotify,
-          },
-        },
-        {
-          index: 2,
-          quickReplyButton: {
-            displayText: "Download",
-            id: `${message.prefix}yta ${data.youtube}`,
-          },
-        },
-      ],
-    };
-    await message.sendMessage(buttonMessage, {}, "template");
-  }
-);
 
 
 command(
