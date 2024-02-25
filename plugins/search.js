@@ -39,7 +39,7 @@ thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }}, caption: (txxt)}, {quoted: 
 
 command(
     {
-        pattern: "ginfo",
+        pattern: "gitinfo",
         fromMe: isPrivate,
         desc: "github user details",
         type: "search",
