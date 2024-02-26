@@ -29,7 +29,7 @@ thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }} }, {quoted: message })
     }
     );
 
-
+// ZETA BRO //
 
 command(
     {
@@ -39,8 +39,7 @@ command(
         type: "downloader",
     },
     async (message, match) => {
-    	
-    	
+    	match = match || message.reply_message.text
    if (!match.includes("https://www.instagram"))return message.reply(`*_Need instagram Link_*`)
       var { data } = await getJson(`https://vihangayt.me/download/instagram?url=${match}`);
         
@@ -51,6 +50,8 @@ command(
 });
 
 
+
+// ZETA BRO //
 command(
     {
         pattern: "ytv",
