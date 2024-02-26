@@ -1,7 +1,7 @@
 const { command, isPrivate, runtime } = require("../lib");
 
 command({
-        pattern: "run", 
+        pattern: "runtime", 
         fromMe: isPrivate,
         desc: "Bot Runtime", 
         type: "user",
