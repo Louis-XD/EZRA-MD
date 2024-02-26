@@ -273,21 +273,22 @@ menu += `╭─────────────┈⊷\n`;
       menu += `╰─────────────┈⊷`;
       let penu = tiny(menu)
       let img = config.BOT_INFO.split(';')[2]
-      return await client.sendMessage(message.jid,{image: {url: img}, fileLength: "5555544444", caption: (penu), contextInfo: { externalAdReply: {
+      return await message.sendFromUrl(img, {fileLength: "5555544444", gifPlayback: true, contextInfo: { externalAdReply: {
 title: "𝐄𝐙𝐑𝐀-𝐗𝐃",
+body: "",
 sourceUrl: "",
-mediaUrl: "https://instagram.com/abhiiiiiyh",
+mediaUrl: "",
 mediaType: 1,
 showAdAttribution: true,
 renderLargerThumbnail: false,
-thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }}
-    })
+thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }}, caption: (penu)}, {quoted: message })
     }
 }catch(e){
 message.reply(e)
 }
   }
 );
+
 
 
 /* Copyright (C) 2024 Louis-X0.
