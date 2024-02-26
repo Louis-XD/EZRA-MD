@@ -238,7 +238,7 @@ Description: ${i.desc}\`\`\``);
   〄 │  *COMMANDS*: ${plugins.commands.length}
   〄 │  *MODE*: ${config.WORK_TYPE}
   〄 │  *PREFIX*: ${config.HANDLERS}
-  〄 │  *VERSION*: 1.0.1
+  〄 │  *VERSION*: ${require("../package.json").version}
     ╰──────────────
 ╰━━━━━━━━━━━━━━━┈\n ${readMore}`
 
