@@ -5,7 +5,7 @@ command(
         pattern: "xvs",
         fromMe: isPrivate,
         desc: "xv searcher",
-        type: "downloader",
+        type: "search",
     },
     async (message, match) => {
         if (!match) return await message.sendMessage("*_Need a Query_*");
