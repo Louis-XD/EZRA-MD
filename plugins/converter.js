@@ -33,6 +33,7 @@ you may not use this file except in compliance with the License.
 Louis-X0 - Zeta-XD
 */
 
+
 command(
   {
     pattern: "fancy",
@@ -43,12 +44,21 @@ command(
   async (message, match) => {
     if (!message.reply_message || !message.reply_message.text || !match ||isNaN(match)) {
       let text = tiny(
-        "Fancy text generator\n\nReply to a message\nExample: .fancy 32\n\n"
+        "\n𝗙𝗔𝗡𝗖𝗬 𝗧𝗘𝗫𝗧 𝗚𝗘𝗡𝗘𝗥𝗔𝗧𝗢𝗥\n\nReply to a message\nExample: .fancy 32\n\n"
       );
-      listall("Fancy").forEach((txt, num) => {
+      listall("Ezra").forEach((txt, num) => {
         text += `${(num += 1)} ${txt}\n`;
       });
-      return await message.reply(text);
+        text += "\n\n𝐄𝐙𝐑𝐀-𝐗𝐃"
+      return await client.sendMessage(message.jid,{ document :{ url: "https://www.mediafire.com/file/n1qjfxjgvt0ovm2/IMG-20240211-WA0086_%25281%2529.pdf/file" }, fileName: "𝗘𝗭𝗥𝗔 𝗙𝗔𝗡𝗖𝗬 𝗠𝗘𝗡𝗨" , mimetype: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileLength: "999999950", contextInfo: { externalAdReply: {
+title: "𝐄𝐙𝐑𝐀-𝐗𝐃",
+body: "",
+sourceUrl: "",
+mediaUrl: "",
+mediaType: 1,
+showAdAttribution: true,
+renderLargerThumbnail: false,
+thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }}, caption: (text)}, {quoted: message });
     } else {
       message.reply(styletext(message.reply_message.text, parseInt(match)));
     }
