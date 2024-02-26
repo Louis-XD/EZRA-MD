@@ -5,7 +5,7 @@ command(
         pattern: "ginfo",
         fromMe: isPrivate,
         desc: "group infp",
-        type: "converter",
+        type: "group",
     },
     async (message, match, client, m) => {
         if (!match || !match.match(/^https:\/\/chat\.whatsapp\.com\/[a-zA-Z0-9]/)) return await message.reply("*_Need A WhatsApp Group Link_*");
