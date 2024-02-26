@@ -126,6 +126,7 @@ thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }}, }, {quoted: message })
     }
     );
 
+// Zeta Kunda //
 
 command(
     {
@@ -135,17 +136,18 @@ command(
         type: "downloader",
     },
     async (message, match) => {
-    	
-    	
-   if (!match.includes("https://www.instagram"))return message.reply(`*_Need a IG Story Link_*`)
+    	match = match || message.reply_message.text
+   if (!match.includes("https://www.instagram"))return message.reply(`*_Need Story Link_*`)
       var { data } = await getJson(`https://vihangayt.me/download/instagram?url=${match}`);
         
         for (let i = 0; i < data.data.length; i++) {
-            await message.sendFromUrl(data.data[i].url)
+            await message.sendFromUrl(data.data[i].url, { caption: (config.CAPTION)})
         }
              
 });
 
+
+// Andi ///
 
 
 command(
