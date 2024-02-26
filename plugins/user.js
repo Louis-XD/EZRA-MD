@@ -227,20 +227,20 @@ Description: ${i.desc}\`\`\``);
       let [date, time] = new Date()
         .toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })
         .split(",");
+        let usern = message.pushName
+        const readMore = String.fromCharCode(8206).repeat(4001);
       let menu = `\n╭━━━〔 ${BOT_INFO.split(";")[0]} 〕━━━┈
     ╭──────────────
-  ✺ │  *OWNER*:  ${BOT_INFO.split(";")[1]}
-  ✺ │  *DATE*: ${date}
-  ✺ │  *TIME*: ${time}
-  ✺ │  *COMMANDS*: ${plugins.commands.length}
-  ✺ │  *MODE*: ${config.WORK_TYPE}
-  ✺ │  *VERSION*: 1.0.1
-  ✺ │  *RAM*: 14.8 GB/ 62.77 GB
-  ✺ │  *PLATFROM*: linux
+  〄 │  *OWNER*: ${BOT_INFO.split(";")[1]}
+  〄 │  *USER*: ${usern}
+  〄 │  *DATE*: ${date}
+  〄 │  *TIME*: ${time}
+  〄 │  *COMMANDS*: ${plugins.commands.length}
+  〄 │  *MODE*: ${config.WORK_TYPE}
+  〄 │  *PREFIX*: ${config.HANDLERS}
+  〄 │  *VERSION*: 1.0.1
     ╰──────────────
-╰━━━━━━━━━━━━━━━\n\n  ▎▍▌▌▉▏▎▌▉▐▏▌
-  ▎▍▌▌▉▏▎▌▉▐▏▌\n         𝐄𝐙𝐑𝐀-𝐗𝐃\n`
-menu += `╭─────────────┈⊷\n`;
+╰━━━━━━━━━━━━━━━┈\n ${readMore}`
 
       let cmnd = [];
       let cmd;
@@ -260,17 +260,17 @@ menu += `╭─────────────┈⊷\n`;
       });
       cmnd.sort();
       category.sort().forEach((cmmd) => {
-        menu += `│  ╭─────────────┈⊷`;
-        menu += `\n│  ✥ 「 *${cmmd.toUpperCase()}* 」`;
-        menu += `\n│  ├─────────────┈⊷`;
+        menu += `\n ╭─────────────┈⚆`;
+        menu += `\n  │ 「 *${cmmd.toUpperCase()}* 」`;
+        menu += `\n ╰┬────────────┈⚆`
+        menu += `\n ╭┴────────────┈⚆`;
         let comad = cmnd.filter(({ type }) => type == cmmd);
         comad.forEach(({ cmd }) => {
-          menu += `\n│   ||•➛  ${cmd.trim()}`;
+          menu += `\nཐིཋྀ    ${cmd.trim()}`;
         });
-        menu += `\n│  ╰─────────────┈⊷`;
-        menu += `\n`;
+        menu += `\n ╰─────────────┈⚆`;
       });
-      menu += `╰─────────────┈⊷`;
+menu += `\n\n𝐄𝐙𝐑𝐀-𝐗𝐃`;
       let penu = tiny(menu)
       let img = config.BOT_INFO.split(';')[2]
       return await message.sendFromUrl(img, {fileLength: "5555544444", gifPlayback: true, contextInfo: { externalAdReply: {
@@ -288,7 +288,6 @@ message.reply(e)
 }
   }
 );
-
 
 
 /* Copyright (C) 2024 Louis-X0.
