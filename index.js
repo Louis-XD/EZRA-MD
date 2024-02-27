@@ -29,6 +29,7 @@ if (!fs.existsSync("./lib/session/creds.json")) {
 }
 */
 //
+/*
 async function MakeSession() {
   try {
     console.log("WRITING SESSION...");
@@ -43,6 +44,7 @@ async function MakeSession() {
 }
 
 MakeSession();
+*/
 //
 fs.readdirSync("./lib/database/").forEach((plugin) => {
   if (path.extname(plugin).toLowerCase() == ".js") {
