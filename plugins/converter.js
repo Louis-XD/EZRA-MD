@@ -46,7 +46,7 @@ command(
       let text = tiny(
         "\n𝗙𝗔𝗡𝗖𝗬 𝗧𝗘𝗫𝗧 𝗚𝗘𝗡𝗘𝗥𝗔𝗧𝗢𝗥\n\nReply to a message\nExample: .fancy 32\n\n"
       );
-      listall("Ezra").forEach((txt, num) => {
+      listall("Ezra-XD").forEach((txt, num) => {
         text += `${(num += 1)} ${txt}\n`;
       });
         text += "\n\n𝐄𝐙𝐑𝐀-𝐗𝐃"
