@@ -32,7 +32,7 @@ fs.readdirSync("./lib/database/").forEach((plugin) => {
     require("./lib/database/" + plugin);
   }
 });
-
+/*
 async function MakeSession() {
   try {
     console.log("WRITING SESSION...");
@@ -48,7 +48,7 @@ async function MakeSession() {
 
 MakeSession();
 
-
+*/
 
 async function Abhiy() {
   console.log("Syncing Database");
