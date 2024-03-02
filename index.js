@@ -1,3 +1,4 @@
+const axios = require('axios');
 const {
   default: makeWASocket,
   useMultiFileAuthState,
@@ -14,23 +15,40 @@ const got = require("got");
 const config = require("./config");
 const { PluginDB } = require("./lib/database/plugins");
 const Greetings = require("./lib/Greetings");
-const { MakeSession } = require("./lib/session");
 const store = makeInMemoryStore({
   logger: pino().child({ level: "silent", stream: "store" }),
 });
 
 require("events").EventEmitter.defaultMaxListeners = 500;
-      
+ /*     
 if (!fs.existsSync("./lib/session/creds.json")) {
   MakeSession(config.SESSION_ID, "./lib/session/creds.json").then(
     console.log("Vesrion : " + require("./package.json").version)
   );
 }
+*/
 fs.readdirSync("./lib/database/").forEach((plugin) => {
   if (path.extname(plugin).toLowerCase() == ".js") {
     require("./lib/database/" + plugin);
   }
 });
+
+async function MakeSession() {
+  try {
+    console.log("WRITING SESSION...");
+    const {
+      data
+    } = await axios(`https://paste.c-net.org/${config.SESSION_ID.split(':')[1]}`);
+    await fs.writeFileSync("./lib/session/creds.json", JSON.stringify(data));
+    console.log("SESSION CREATED SUCCESSFULLY✅");
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+MakeSession();
+
+
 
 async function Abhiy() {
   console.log("Syncing Database");
