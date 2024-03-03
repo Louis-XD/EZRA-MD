@@ -6,7 +6,7 @@ command(
         desc: "Google Drive Downloader",
         type: "downloader",
     },
-    async (message, match) => {
+    async (message, match, client) => {
     match = match || message.reply_message.text;
         if (!match) return await message.sendMessage("*_Need a gdrive url_*");
 var {data} = await getJson(`https://vihangayt.me/download/gdrive?url=${match}`);
