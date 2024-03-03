@@ -1,5 +1,5 @@
 const X = "*Converted By Ezra-XD*"
-const R = "*_Reply To A Image!_*
+const R = "*_Reply To A Image!_*"
 const { upload } = require('../lib/imgur');
 const fs = require('fs');
 const { command, isPrivate } = require("../lib/");
