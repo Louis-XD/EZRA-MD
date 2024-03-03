@@ -243,24 +243,15 @@ command(
 //Credits Zeta-X0
 //created by Abhiy
 
-command(
-  { pattern: "getsudo ?(.*)", 
-    fromMe: isPrivate, 
-    desc: "shows sudo numbers", 
-    type: "heroku" 
-  },
-  async (message, match, mm) => {
-    const vars = await heroku
-      .get(baseURI + "/config-vars")
-      .catch(async (error) => {
-        return await message.send("HEROKU : " + error.body.message);
-      });
-    await message.sendMessage("```" + `SUDO number are : ${config.SUDO}` + "```");
-  }
-);
+
 
 command(
-  { pattern: "setsudo ?(.*)", fromMe: isPrivate, desc: "set new sudo", type: "heroku" },
+  { 
+    pattern: "setsudo ?(.*)", 
+    fromMe: isPrivate, 
+    desc: "set new sudo", 
+    type: "heroku" 
+  },
   async (message, mm) => {
     var newSudo = (message.reply_message ? message.reply_message.jid : "" || mm).split(
       "@"
