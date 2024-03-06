@@ -1,7 +1,7 @@
 const { command, isPrivate } = require("../lib/");
 command(
   {
-    pattern: "owner",
+    pattern: "owne",
     fromMe: isPrivate,
     desc: "owner vcard",
     type: "user",
