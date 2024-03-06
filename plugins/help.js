@@ -1,9 +1,9 @@
 const { command, isPrivate } = require("../lib/");
 command(
   {
-    pattern: "owne",
+    pattern: "help",
     fromMe: isPrivate,
-    desc: "owner vcard",
+    desc: "helper vcard",
     type: "user",
   },
   async (message, match, m, client) => {
