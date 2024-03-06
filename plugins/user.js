@@ -200,7 +200,6 @@ you may not use this file except in compliance with the License.
 Louis-X0 - Zeta-X0
 */
 
-
 command(
   {
     pattern: "menu",
@@ -218,6 +217,7 @@ try{
           i.pattern.test(message.prefix + match)
         ) {
           const cmdName = i.pattern.toString().split(/\W+/)[1];
+let usern = message.pushName;
           message.reply(`\`\`\`Command: ${message.prefix}${cmdName.trim()}
 Description: ${i.desc}\`\`\``);
         }
@@ -227,20 +227,20 @@ Description: ${i.desc}\`\`\``);
       let [date, time] = new Date()
         .toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })
         .split(",");
-        let usern = message.pushName
-        const readMore = String.fromCharCode(8206).repeat(4001);
+
       let menu = `\n╭━━━〔 ${BOT_INFO.split(";")[0]} 〕━━━┈
     ╭──────────────
-  〄 │  *OWNER*: ${BOT_INFO.split(";")[1]}
-  〄 │  *USER*: ${usern}
+  〄 │  *OWNER*:  ${BOT_INFO.split(";")[1]}
+  〄 │  *USER*: ${message.pushName}
   〄 │  *DATE*: ${date}
   〄 │  *TIME*: ${time}
   〄 │  *COMMANDS*: ${plugins.commands.length}
   〄 │  *MODE*: ${config.WORK_TYPE}
-  〄 │  *PREFIX*: ${config.HANDLERS}
   〄 │  *VERSION*: ${require("../package.json").version}
     ╰──────────────
-╰━━━━━━━━━━━━━━━┈\n ${readMore}`
+╰━━━━━━━━━━━━━━━\n`
+
+menu +=`╭───────────┈⊷\n`;
 
       let cmnd = [];
       let cmd;
@@ -260,28 +260,21 @@ Description: ${i.desc}\`\`\``);
       });
       cmnd.sort();
       category.sort().forEach((cmmd) => {
-        menu += `\n ╭─────────────┈⚆`;
-        menu += `\n  │ 「 *${cmmd.toUpperCase()}* 」`;
-        menu += `\n ╰┬────────────┈⚆`
-        menu += `\n ╭┴────────────┈⚆`;
+        menu += `│  ╭─────────────┈⊷`;
+        menu += `\n│  │ 「 *${cmmd.toUpperCase()}* 」`;
+        menu += `\n│  ╰┬────────────┈⊷`
+menu += `\n   ╭┴────────────┈⊷`;
         let comad = cmnd.filter(({ type }) => type == cmmd);
         comad.forEach(({ cmd }) => {
-          menu += `\nཐིཋྀ  ${cmd.trim()}`;
+          menu += `\n│   ||•➛   ${cmd.trim()}`;
         });
-        menu += `\n ╰─────────────┈⚆`;
+        menu += `\n│  ╰─────────────┈⊷`;
+        menu += `\n`;
       });
-menu += `\n\n𝐄𝐙𝐑𝐀-𝐗𝐃`;
+      menu += `╰─────────────┈⊷`;
       let penu = tiny(menu)
       let img = config.BOT_INFO.split(';')[2]
-      return await message.sendFromUrl(img, {fileLength: "5555544444", gifPlayback: true, contextInfo: { externalAdReply: {
-title: "𝐄𝐙𝐑𝐀-𝐗𝐃",
-body: "",
-sourceUrl: "",
-mediaUrl: "",
-mediaType: 1,
-showAdAttribution: true,
-renderLargerThumbnail: false,
-thumbnailUrl: "https://i.imgur.com/Ou56ggv.jpeg" }}, caption: (penu)}, {quoted: message })
+      return await message.sendFromUrl(img, {fileLength: "5555544444", gifPlayback: true, caption: (penu)}, {quoted: message })
     }
 }catch(e){
 message.reply(e)
@@ -289,9 +282,7 @@ message.reply(e)
   }
 );
 
-
-/* Copyright (C) 2024 Louis-X0.
-Licensed under the  GPL-3.0 License;
+/*
 you may not use this file except in compliance with the License.
 Louis-X0 - Zeta-X0
 */
